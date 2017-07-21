@@ -90,6 +90,7 @@ import eclipse.spellchecker.etc.StringMatcher;
  *
  * @since 2.1
  */
+@SuppressWarnings("restriction")
 public abstract class OptionsConfigurationBlock {
 
 	public static class Key {

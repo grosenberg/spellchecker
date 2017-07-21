@@ -23,6 +23,7 @@ import eclipse.spellchecker.engine.AbstractSpellDictionary;
  *
  * @since 3.0
  */
+@SuppressWarnings("deprecation")
 public class TaskTagDictionary extends AbstractSpellDictionary implements IPropertyChangeListener {
 
 	/*

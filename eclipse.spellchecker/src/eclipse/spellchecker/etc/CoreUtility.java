@@ -35,6 +35,7 @@ import eclipse.spellchecker.messages.JavaUIMessages;
 import eclipse.spellchecker.messages.Messages;
 
 
+@SuppressWarnings("deprecation")
 public class CoreUtility {
 
 	public static void createDerivedFolder(IFolder folder, boolean force, boolean local, IProgressMonitor monitor) throws CoreException {

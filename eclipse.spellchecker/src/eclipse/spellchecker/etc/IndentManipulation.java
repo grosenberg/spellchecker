@@ -2,7 +2,6 @@ package eclipse.spellchecker.etc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
@@ -314,6 +313,7 @@ public final class IndentManipulation {
 	 * <li>the given <code>newIndentString</code> is null</li>
 	 * </ul>
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ReplaceEdit[] getChangeIndentEdits(String source, int indentUnitsToRemove, int tabWidth, int indentWidth, String newIndentString) {
 		if (tabWidth < 0 || indentWidth < 0 || source == null || indentUnitsToRemove < 0 || newIndentString == null) {
 			throw new IllegalArgumentException();
@@ -420,13 +420,13 @@ public final class IndentManipulation {
 //		}
 //		return tabWidth;
 //	}
-
-	private static int getIntValue(Map options, String key, int def) {
-		try {
-			return Integer.parseInt((String) options.get(key));
-		} catch (NumberFormatException e) {
-			return def;
-		}
-	}
+//
+//	private static int getIntValue(Map options, String key, int def) {
+//		try {
+//			return Integer.parseInt((String) options.get(key));
+//		} catch (NumberFormatException e) {
+//			return def;
+//		}
+//	}
 }
 

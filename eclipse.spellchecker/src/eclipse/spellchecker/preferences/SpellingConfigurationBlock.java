@@ -63,6 +63,7 @@ import eclipse.spellchecker.messages.Messages;
  *
  * @since 3.0
  */
+@SuppressWarnings("restriction")
 public class SpellingConfigurationBlock extends OptionsConfigurationBlock {
 
 	/**
