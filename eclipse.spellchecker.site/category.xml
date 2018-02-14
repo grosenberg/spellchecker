@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/eclipse.spellchecker.feature_3.3.0.qualifier.jar" id="eclipse.spellchecker.feature" version="3.3.0.qualifier">
-      <category name="net.certiv"/>
-   </feature>
-   <category-def name="net.certiv" label="Certiv Tools"/>
-</site>

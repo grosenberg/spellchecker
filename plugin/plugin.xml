@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <!-- Not used to create markers but to allow registering a    -->
+    <!-- quick fix processor for the reported spelling problems . -->
+    <extension id="spellchecker.marker" name="Spelling Marker" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.textmarker"/>
+    </extension>
+
+    <!-- <extension point="org.eclipse.jdt.ui.quickFixProcessors">
+        <quickFixProcessor
+            class="net.certiv.spellchecker.WordQuickFixProcessor"
+            id="net.certiv.spellchecker.WordQuickFixProcessor" name="%spellingQuickFixProcessor">
+            <handledMarkerTypes>
+                <markerType id="spellchecker.marker"/>
+            </handledMarkerTypes>
+        </quickFixProcessor>
+    </extension> -->
+
+<!--
+    <extension point="org.eclipse.ui.workbench.texteditor.spellingEngine">
+        <engine
+            class="net.certiv.spellchecker.DefaultSpellingEngine"
+            default="true"
+            id="net.certiv.spellchecker.DefaultSpellingEngine"
+            label="SpellChecker spelling engine" preferencesClass="net.certiv.spellchecker.preferences.SpellingPreferenceBlock"/>
+    </extension>
+    <extension
+          point="org.eclipse.core.runtime.preferences">
+       <initializer
+             class="net.certiv.spellchecker.preferences.SpellingPreferenceInitializer">
+       </initializer>
+    </extension>
+-->
+
+</plugin>
