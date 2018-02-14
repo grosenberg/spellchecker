@@ -1,4 +1,4 @@
-eclipse.spellchecker
+net.certiv.spellchecker
 ====================
 
-Mostly extracting the spell checker from JDT so that it can be used in other plugins.
+Customized version of the Eclipse spell checker as extracted from the JDT.
