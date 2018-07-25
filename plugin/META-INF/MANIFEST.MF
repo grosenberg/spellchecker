@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: net.certiv.spellchecker.plugin
 Bundle-ManifestVersion: 2
-Bundle-Name: net.certiv.spellchecker.plugin
+Bundle-Name: Spellchecker
 Bundle-SymbolicName: net.certiv.spellchecker.plugin;singleton:=true
-Bundle-Version: 3.3.0.qualifier
+Bundle-Version: 3.3.2.qualifier
 Bundle-Activator: net.certiv.spellchecker.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text,
@@ -22,4 +23,5 @@ Bundle-ActivationPolicy: lazy
 Export-Package: net.certiv.spellchecker,
  net.certiv.spellchecker.engine,
  net.certiv.spellchecker.etc,
+ net.certiv.spellchecker.messages,
  net.certiv.spellchecker.preferences
