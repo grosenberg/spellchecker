@@ -250,7 +250,7 @@ litigation.
    </requires>
 
    <plugin
-         id="net.certiv.spellchecker.plugin"
+         id="net.certiv.spellchecker"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -36,18 +36,10 @@ import net.certiv.spellchecker.messages.Messages;
  * A {@link SpellingProblem} that adapts a {@link ISpellEvent}.
  * <p>
  * TODO: remove {@link ISpellEvent} notification mechanism
- * </p>
  */
 public class JavaSpellingProblem extends SpellingProblem {
 
-	/** Spell event */
 	private ISpellEvent fSpellEvent;
-
-	/**
-	 * The associated document.
-	 *
-	 * @since 3.3
-	 */
 	private IDocument fDocument;
 
 	/**
@@ -59,29 +51,20 @@ public class JavaSpellingProblem extends SpellingProblem {
 	public JavaSpellingProblem(ISpellEvent spellEvent, IDocument document) {
 		Assert.isLegal(document != null);
 		Assert.isLegal(spellEvent != null);
-		fSpellEvent= spellEvent;
-		fDocument= document;
+		fSpellEvent = spellEvent;
+		fDocument = document;
 	}
 
-	/*
-	 * @see org.eclipse.ui.texteditor.spelling.SpellingProblem#getOffset()
-	 */
 	@Override
 	public int getOffset() {
 		return fSpellEvent.getBegin();
 	}
 
-	/*
-	 * @see org.eclipse.ui.texteditor.spelling.SpellingProblem#getLength()
-	 */
 	@Override
 	public int getLength() {
 		return fSpellEvent.getEnd() - fSpellEvent.getBegin() + 1;
 	}
 
-	/*
-	 * @see org.eclipse.ui.texteditor.spelling.SpellingProblem#getMessage()
-	 */
 	@Override
 	public String getMessage() {
 		if (isSentenceStart() && isDictionaryMatch())
@@ -90,87 +73,71 @@ public class JavaSpellingProblem extends SpellingProblem {
 		return Messages.format(JavaUIMessages.Spelling_error_label, new String[] { fSpellEvent.getWord() });
 	}
 
-	/*
-	 * @see org.eclipse.ui.texteditor.spelling.SpellingProblem#getProposals()
-	 */
 	@Override
 	public ICompletionProposal[] getProposals() {
 		return getProposals(null);
 	}
 
-	/*
-	 * @see org.eclipse.ui.texteditor.spelling.SpellingProblem#getProposals(org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext)
-	 * @since 3.4
-	 */
 	@Override
 	public ICompletionProposal[] getProposals(IQuickAssistInvocationContext context) {
-		String[] arguments= getArguments();
-		if (arguments == null)
-			return new ICompletionProposal[0];
+		String[] arguments = getArguments();
+		if (arguments == null) return new ICompletionProposal[0];
 
-		if (arguments[0].indexOf('&') != -1 && isIgnoringAmpersand())
-			return new ICompletionProposal[0]; // no proposals for now
+		if (arguments[0].indexOf('&') != -1 && isIgnoringAmpersand()) return new ICompletionProposal[0]; // no proposals
+																										 // for now
 
-		final int threshold= Activator.getDefault().getPreferenceStore().getInt(PreferenceConstants.SPELLING_PROPOSAL_THRESHOLD);
-		int size= 0;
-		List<RankedWordProposal> proposals= null;
+		final int threshold = Activator.getDefault().getPreferenceStore()
+				.getInt(PreferenceConstants.SPELLING_PROPOSAL_THRESHOLD);
+		int size = 0;
+		List<RankedWordProposal> proposals = null;
 
-		RankedWordProposal proposal= null;
-		IJavaCompletionProposal[] result= null;
-		int index= 0;
+		RankedWordProposal proposal = null;
+		IJavaCompletionProposal[] result = null;
+		int index = 0;
 
-		boolean fixed= false;
-		boolean match= false;
-		boolean sentence= false;
+		boolean fixed = false;
+		boolean match = false;
+		boolean sentence = false;
 
-		final ISpellCheckEngine engine= SpellCheckEngine.getInstance();
-		final ISpellChecker checker= engine.getSpellChecker();
+		final ISpellCheckEngine engine = SpellCheckEngine.getInstance();
+		final ISpellChecker checker = engine.getSpellChecker();
 
 		if (checker != null) {
 
-			if (context == null)
-				context= new TextInvocationContext(null, getOffset(), getLength());
-			else
-				context= new TextInvocationContext(context.getSourceViewer(), getOffset(), getLength());
+			if (context == null) context = new TextInvocationContext(null, getOffset(), getLength());
+			else context = new TextInvocationContext(context.getSourceViewer(), getOffset(), getLength());
 
 			// FIXME: this is a pretty ugly hack
-			fixed= arguments[0].charAt(0) == IHtmlTagConstants.HTML_TAG_PREFIX
+			fixed = arguments[0].charAt(0) == IHtmlTagConstants.HTML_TAG_PREFIX
 					|| arguments[0].charAt(0) == IJavaDocTagConstants.JAVADOC_TAG_PREFIX;
 
-			if ((sentence && match) && !fixed)
-				result= new IJavaCompletionProposal[] { new ChangeCaseProposal(
-						arguments, getOffset(), getLength(), context, engine
-								.getLocale()) };
+			if ((sentence && match) && !fixed) result = new IJavaCompletionProposal[] {
+					new ChangeCaseProposal(arguments, getOffset(), getLength(), context, engine.getLocale()) };
 			else {
 
-				proposals= new ArrayList<RankedWordProposal>(checker.getProposals(arguments[0],
-						sentence));
-				size= proposals.size();
+				proposals = new ArrayList<>(checker.getProposals(arguments[0], sentence));
+				size = proposals.size();
 
 				if (threshold > 0 && size > threshold) {
-
 					Collections.sort(proposals);
-					proposals= proposals
-							.subList(size - threshold - 1, size - 1);
-					size= proposals.size();
+					proposals = proposals.subList(size - threshold - 1, size - 1);
+					size = proposals.size();
 				}
 
-				boolean extendable= !fixed ? (checker.acceptsWords() || AddWordProposal.canAskToConfigure()) : false;
-				result= new IJavaCompletionProposal[size + (extendable ? 3 : 2)];
+				boolean extendable = !fixed ? (checker.acceptsWords() || AddWordProposal.canAskToConfigure()) : false;
+				result = new IJavaCompletionProposal[size + (extendable ? 3 : 2)];
 
-				for (index= 0; index < size; index++) {
+				for (index = 0; index < size; index++) {
 
-					proposal= proposals.get(index);
-					result[index]= new WordCorrectionProposal(proposal
-							.getText(), arguments, getOffset(), getLength(),
+					proposal = proposals.get(index);
+					result[index] = new WordCorrectionProposal(proposal.getText(), arguments, getOffset(), getLength(),
 							context, proposal.getRank());
 				}
 
-				if (extendable)
-					result[index++]= new AddWordProposal(arguments[0], context);
+				if (extendable) result[index++] = new AddWordProposal(arguments[0], context);
 
-				result[index++]= new WordIgnoreProposal(arguments[0], context);
-				result[index++]= new DisableSpellCheckingProposal(context);
+				result[index++] = new WordIgnoreProposal(arguments[0], context);
+				result[index++] = new DisableSpellCheckingProposal(context);
 			}
 		}
 
@@ -178,38 +145,31 @@ public class JavaSpellingProblem extends SpellingProblem {
 	}
 
 	private boolean isIgnoringAmpersand() {
-		return Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.SPELLING_IGNORE_AMPERSAND_IN_PROPERTIES);
+		return Activator.getDefault().getPreferenceStore()
+				.getBoolean(PreferenceConstants.SPELLING_IGNORE_AMPERSAND_IN_PROPERTIES);
 	}
 
 	public String[] getArguments() {
-
-		String prefix= ""; //$NON-NLS-1$
-		String postfix= ""; //$NON-NLS-1$
+		String prefix = ""; //$NON-NLS-1$
+		String postfix = ""; //$NON-NLS-1$
 		String word;
 		try {
-			word= fDocument.get(getOffset(), getLength());
+			word = fDocument.get(getOffset(), getLength());
 		} catch (BadLocationException e) {
 			return null;
 		}
 
 		try {
 
-			IRegion line= fDocument.getLineInformationOfOffset(getOffset());
-			prefix= fDocument.get(line.getOffset(), getOffset() - line.getOffset());
-			int postfixStart= getOffset() + getLength();
-			postfix= fDocument.get(postfixStart, line.getOffset() + line.getLength() - postfixStart);
+			IRegion line = fDocument.getLineInformationOfOffset(getOffset());
+			prefix = fDocument.get(line.getOffset(), getOffset() - line.getOffset());
+			int postfixStart = getOffset() + getLength();
+			postfix = fDocument.get(postfixStart, line.getOffset() + line.getLength() - postfixStart);
 
-		} catch (BadLocationException exception) {
-			// Do nothing
-		}
-		return new String[] {
-				word,
-				prefix,
-				postfix,
-				isSentenceStart() ? Boolean.toString(true) : Boolean
-						.toString(false),
-				isDictionaryMatch() ? Boolean.toString(true) : Boolean
-						.toString(false) };
+		} catch (BadLocationException exception) {}
+		return new String[] { word, prefix, postfix,
+				isSentenceStart() ? Boolean.toString(true) : Boolean.toString(false),
+				isDictionaryMatch() ? Boolean.toString(true) : Boolean.toString(false) };
 	}
 
 	/**

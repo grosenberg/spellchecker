@@ -14,8 +14,8 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>net.certiv.spellchecker.plugin</artifactId>
+	<artifactId>net.certiv.spellchecker</artifactId>
 	<name>net.certiv.spellchecker :: plugin</name>
-	<description>Private version of the Eclipse spellchecker</description>
+	<description>Partition aware version of the Eclipse spellchecker</description>
 
 </project>

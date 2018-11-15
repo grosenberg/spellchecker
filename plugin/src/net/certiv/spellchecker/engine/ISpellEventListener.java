@@ -11,7 +11,6 @@
 
 package net.certiv.spellchecker.engine;
 
-
 /**
  * Interface for spell event listeners.
  *
@@ -22,8 +21,7 @@ public interface ISpellEventListener {
 	/**
 	 * Handles a spell event.
 	 *
-	 * @param event
-	 *                  Event to handle
+	 * @param event Event to handle
 	 */
-	public void handle(ISpellEvent event);
+	void handle(ISpellEvent event);
 }

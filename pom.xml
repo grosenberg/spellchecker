@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -29,9 +28,9 @@
 
 	<repositories>
 		<repository>
-			<id>photon</id>
+			<id>eclipse</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/photon</url>
+			<url>http://download.eclipse.org/releases/latest</url>
 		</repository>
 	</repositories>
 
@@ -94,9 +93,20 @@
 				</configuration>
 			</plugin>
 
-			<!-- <plugin> <groupId>org.eclipse.tycho</groupId> <artifactId>tycho-source-plugin</artifactId>
-				<version>${tycho.version}</version> <executions> <execution> <id>attach-source</id>
-				<goals> <goal>plugin-source</goal> </goals> </execution> </executions> </plugin> -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>attach-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 
 		<pluginManagement>
@@ -136,6 +146,7 @@
 				<tycho.test.platformArgs>-XstartOnFirstThread</tycho.test.platformArgs>
 			</properties>
 		</profile>
+
 		<profile>
 			<id>source-feature</id>
 			<activation>
@@ -145,10 +156,20 @@
 			</activation>
 			<build>
 				<plugins>
-					<!-- <plugin> <groupId>org.eclipse.tycho.extras</groupId> <artifactId>tycho-source-feature-plugin</artifactId>
-						<version>${tycho.extras.version}</version> <executions> <execution> <id>source-feature</id>
-						<phase>package</phase> <goals> <goal>source-feature</goal> </goals> </execution>
-						</executions> </plugin> -->
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-source-feature-plugin</artifactId>
+						<version>${tycho.extras.version}</version>
+						<executions>
+							<execution>
+								<id>source-feature</id>
+								<phase>package</phase>
+								<goals>
+									<goal>source-feature</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 
 					<plugin>
 						<groupId>org.eclipse.tycho</groupId>
