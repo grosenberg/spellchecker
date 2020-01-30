@@ -95,7 +95,7 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	 * Asks the user whether he wants to configure a user dictionary.
 	 *
 	 * @param shell the shell
-	 * @return <code>true</code> if the user wants to configure the user dictionary
+	 * @return {@code true} if the user wants to configure the user dictionary
 	 * @since 3.3
 	 */
 	private boolean askUserToConfigureUserDictionary(Shell shell) {
@@ -117,7 +117,7 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	 * Tells whether this proposal can ask to
 	 * configure a user dictionary.
 	 *
-	 * @return <code>true</code> if it can ask the user
+	 * @return {@code true} if it can ask the user
 	 */
 	static boolean canAskToConfigure() {
 		return !Activator.getDefault().getPreferenceStore().getBoolean(PREF_KEY_DO_NOT_ASK);

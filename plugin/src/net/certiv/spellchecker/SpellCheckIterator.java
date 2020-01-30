@@ -159,8 +159,8 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	 *
 	 * @param begin the begin index
 	 * @param end the end index
-	 * @return <code>true</code> iff the token consists of digits and at
-	 *         least one letter only, <code>false</code> otherwise
+	 * @return {@code true} iff the token consists of digits and at
+	 *         least one letter only, {@code false} otherwise
 	 */
 	protected final boolean isAlphaNumeric(final int begin, final int end) {
 
@@ -183,7 +183,7 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	 * Checks the last token against the given tags?
 	 *
 	 * @param tags the tags to check
-	 * @return <code>true</code> iff the last token is in the given array
+	 * @return {@code true} iff the last token is in the given array
 	 */
 	protected final boolean isToken(final String[] tags) {
 		return isToken(fLastToken, tags);
@@ -194,7 +194,7 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	 *
 	 * @param token the token to check
 	 * @param tags the tags to check
-	 * @return <code>true</code> iff the last token is in the given array
+	 * @return {@code true} iff the last token is in the given array
 	 * @since 3.3
 	 */
 	protected final boolean isToken(final String token, final String[] tags) {
@@ -215,8 +215,8 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	 * non-whitespace characters?
 	 *
 	 * @param begin the begin index
-	 * @return <code>true</code> iff the token is a single letter token,
-	 *         <code>false</code> otherwise
+	 * @return {@code true} iff the token is a single letter token,
+	 *         {@code false} otherwise
 	 */
 	protected final boolean isSingleLetter(final int begin) {
 		if (!Character.isLetter(fContent.charAt(begin)))
@@ -235,8 +235,8 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	 * Does the specified token look like an URL?
 	 *
 	 * @param begin the begin index
-	 * @return <code>true</code> iff this token look like an URL,
-	 *         <code>false</code> otherwise
+	 * @return {@code true} iff this token look like an URL,
+	 *         {@code false} otherwise
 	 */
 	protected final boolean isUrlToken(final int begin) {
 
@@ -253,8 +253,8 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	 *
 	 * @param begin the begin index
 	 * @param end the end index
-	 * @return <code>true</code> iff the token consists of whitespace
-	 *         only, <code>false</code> otherwise
+	 * @return {@code true} iff the token consists of whitespace
+	 *         only, {@code false} otherwise
 	 */
 	protected final boolean isWhitespace(final int begin, final int end) {
 
@@ -303,7 +303,7 @@ public class SpellCheckIterator implements ISpellCheckIterator {
 	/**
 	 * Determines the next token to be spell checked.
 	 *
-	 * @return the next token to be spell checked, or <code>null</code>
+	 * @return the next token to be spell checked, or {@code null}
 	 *         iff the next token is not a candidate for spell checking.
 	 */
 	protected String nextToken() {

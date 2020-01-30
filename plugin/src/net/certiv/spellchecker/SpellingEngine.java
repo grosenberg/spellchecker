@@ -97,7 +97,7 @@ public abstract class SpellingEngine implements ISpellingEngine {
 	 * @param regions the regions
 	 * @param checker the spell checker
 	 * @param collector the spelling problem collector
-	 * @param monitor the progress monitor, can be <code>null</code>
+	 * @param monitor the progress monitor, can be {@code null}
 	 */
 	protected abstract void check(IDocument document, IRegion[] regions, ISpellChecker checker,
 			ISpellingProblemCollector collector, IProgressMonitor monitor);

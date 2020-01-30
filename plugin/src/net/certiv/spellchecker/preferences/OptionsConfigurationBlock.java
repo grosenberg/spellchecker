@@ -228,7 +228,7 @@ public abstract class OptionsConfigurationBlock {
 	}
 
 	/**
-	 * A node in <code>FilteredPreferenceTree</code>.
+	 * A node in {@code FilteredPreferenceTree}.
 	 */
 	protected static class PreferenceTreeNode {
 
@@ -247,25 +247,25 @@ public abstract class OptionsConfigurationBlock {
 		/**
 		 * Tells the type of UI control corresponding to this node. One of
 		 * <ul>
-		 * <li> <code>NONE</code></li>
-		 * <li> <code>CHECKBOX</code></li>
-		 * <li> <code>COMBO</code></li>
-		 * <li> <code>EXPANDABLE_COMPOSITE</code></li>
-		 * <li> <code>TEXT_CONTROL</code></li>
-		 * <li> <code>LINK</code></li>
+		 * <li> {@code NONE}</li>
+		 * <li> {@code CHECKBOX}</li>
+		 * <li> {@code COMBO}</li>
+		 * <li> {@code EXPANDABLE_COMPOSITE}</li>
+		 * <li> {@code TEXT_CONTROL}</li>
+		 * <li> {@code LINK}</li>
 		 * </ul>
 		 */
 		private final int fControlType;
 
 		/**
 		 * Label text of the preference which is used for filtering. This text does not contain
-		 * <code>&</code> which is used to indicate mnemonics.
+		 * {@code &} which is used to indicate mnemonics.
 		 */
 		private final String fLabel;
 
 		/**
 		 * The preference key or the local key to uniquely identify a node's corresponding UI
-		 * control. Can be <code>null</code>.
+		 * control. Can be {@code null}.
 		 */
 		private final Key fKey;
 
@@ -287,9 +287,9 @@ public abstract class OptionsConfigurationBlock {
 		/**
 		 * Constructs a new instance of PreferenceTreeNode according to the parameters.
 		 * <p>
-		 * The <code>label</code> and the <code>key</code> must not be <code>null</code> if the node
+		 * The {@code label} and the {@code key} must not be {@code null} if the node
 		 * has a corresponding UI control.
-		 * </p>
+		 * 
 		 *
 		 * @param label the label text
 		 * @param key the key
@@ -368,7 +368,7 @@ public abstract class OptionsConfigurationBlock {
 	 * <p>
 	 * The tree consists of an optional description label, a filter text input box, and a scrolled
 	 * area. The scrolled content contains all the UI controls which participate in filtering.
-	 * </p>
+	 * 
 	 * <p>
 	 * Supports '*' and '?' wildcards. A word in filter text preceded by '~' is used to filter on
 	 * preference values, e.g. ~ignore or ~off. Supported filter formats are
@@ -378,7 +378,7 @@ public abstract class OptionsConfigurationBlock {
 	 * <li>pattern ~valueFilter</li>
 	 * <li>~valueFilter pattern</li>
 	 * </ul>
-	 * </p>
+	 * 
 	 */
 	protected static class FilteredPreferenceTree {
 		/**
@@ -392,7 +392,7 @@ public abstract class OptionsConfigurationBlock {
 		private final OptionsConfigurationBlock fConfigBlock;
 
 		/**
-		 * The parent composite of <code>FilteredPreferenceTree</code>.
+		 * The parent composite of {@code FilteredPreferenceTree}.
 		 */
 		private final Composite fParentComposite;
 
@@ -421,7 +421,7 @@ public abstract class OptionsConfigurationBlock {
 		 *
 		 * @param configBlock the Options Configuration block
 		 * @param parentComposite the parent composite
-		 * @param label the label, or <code>null</code> if none
+		 * @param label the label, or {@code null} if none
 		 */
 		public FilteredPreferenceTree(OptionsConfigurationBlock configBlock, Composite parentComposite, String label) {
 			fRoot= new PreferenceTreeNode(null, null, PreferenceTreeNode.NONE, false);
@@ -1362,7 +1362,7 @@ public abstract class OptionsConfigurationBlock {
 	 *
 	 * @param key a key
 	 * @param value an assumed value for the key
-	 * @return <code>true</code> iff the given key's value is equal to the given value
+	 * @return {@code true} iff the given key's value is equal to the given value
 	 */
 	protected boolean checkValue(Key key, String value) {
 		return value.equals(getValue(key));
@@ -1387,7 +1387,7 @@ public abstract class OptionsConfigurationBlock {
 	}
 
 	/**
-	 * Sets the option <code>key</code> to the value <code>value</code>.
+	 * Sets the option {@code key} to the value {@code value}.
 	 * Note that callers have to make sure the corresponding controls are updated afterwards.
 	 *
 	 * @param key the option key
@@ -1409,7 +1409,7 @@ public abstract class OptionsConfigurationBlock {
 	}
 
 	/**
-	 * Sets the option <code>key</code> to the value <code>value</code>.
+	 * Sets the option {@code key} to the value {@code value}.
 	 * Note that callers have to make sure the corresponding controls are updated afterwards.
 	 *
 	 * @param key the option key
@@ -1468,9 +1468,9 @@ public abstract class OptionsConfigurationBlock {
 	/**
 	 * Updates fields and validates settings.
 	 *
-	 * @param changedKey key that changed, or <code>null</code>, if all changed.
-	 * @param oldValue old value or <code>null</code>
-	 * @param newValue new value or <code>null</code>
+	 * @param changedKey key that changed, or {@code null}, if all changed.
+	 * @param oldValue old value or {@code null}
+	 * @param newValue new value or {@code null}
 	 */
 	protected abstract void validateSettings(Key changedKey, String oldValue, String newValue);
 

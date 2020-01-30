@@ -145,7 +145,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 	 * Returns the dictionary closest to the given locale.
 	 *
 	 * @param locale the locale
-	 * @return the dictionary or <code>null</code> if none is suitable
+	 * @return the dictionary or {@code null} if none is suitable
 	 * @since 3.3
 	 */
 	public ISpellDictionary findDictionary(Locale locale) {
@@ -193,12 +193,12 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 	 * Returns the enumeration of URLs for the dictionary locations where the Platform dictionaries
 	 * are located.
 	 * <p>
-	 * This is in <code>org.eclipse.jdt.ui/dictionaries/</code> which can also be populated via
+	 * This is in {@code org.eclipse.jdt.ui/dictionaries/} which can also be populated via
 	 * fragments.
-	 * </p>
+	 * 
 	 *
 	 * @throws IOException if there is an I/O error
-	 * @return The dictionary locations, or <code>null</code> iff the locations are not known
+	 * @return The dictionary locations, or {@code null} iff the locations are not known
 	 */
 	public static Enumeration<URL> getDictionaryLocations() throws IOException {
 		final Activator plugin = Activator.getDefault();

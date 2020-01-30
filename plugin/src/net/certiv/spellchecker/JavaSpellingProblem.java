@@ -173,27 +173,24 @@ public class JavaSpellingProblem extends SpellingProblem {
 	}
 
 	/**
-	 * Returns <code>true</code> iff the corresponding word was found in the dictionary.
+	 * Returns {@code true} iff the corresponding word was found in the dictionary.
 	 * <p>
 	 * NOTE: to be removed, see {@link #getProposals()}
-	 * </p>
 	 *
-	 * @return <code>true</code> iff the corresponding word was found in the dictionary
+	 * @return {@code true} iff the corresponding word was found in the dictionary
 	 */
 	public boolean isDictionaryMatch() {
 		return fSpellEvent.isMatch();
 	}
 
 	/**
-	 * Returns <code>true</code> iff the corresponding word starts a sentence.
+	 * Returns {@code true} iff the corresponding word starts a sentence.
 	 * <p>
 	 * NOTE: to be removed, see {@link #getProposals()}
-	 * </p>
 	 *
-	 * @return <code>true</code> iff the corresponding word starts a sentence
+	 * @return {@code true} iff the corresponding word starts a sentence
 	 */
 	public boolean isSentenceStart() {
 		return fSpellEvent.isStart();
 	}
-
 }

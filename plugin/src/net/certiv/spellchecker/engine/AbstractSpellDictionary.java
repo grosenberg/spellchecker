@@ -173,8 +173,8 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	 * @param word
 	 *                   The word to find the nearest matches for
 	 * @param sentence
-	 *                   <code>true</code> iff the proposals start a new sentence,
-	 *                   <code>false</code> otherwise
+	 *                   {@code true} iff the proposals start a new sentence,
+	 *                   {@code false} otherwise
 	 * @param hashs
 	 *                   Array of close hashes to find the matches
 	 * @return Set of ranked words with bounded distance to the specified word
@@ -249,8 +249,8 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	 * @param word
 	 *                   The word to find the nearest matches for
 	 * @param sentence
-	 *                   <code>true</code> iff the proposals start a new sentence,
-	 *                   <code>false</code> otherwise
+	 *                   {@code true} iff the proposals start a new sentence,
+	 *                   {@code false} otherwise
 	 * @param result
 	 *                   Set of ranked words with smallest possible distance to the
 	 *                   specified word
@@ -317,7 +317,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	/**
 	 * Tells whether this dictionary is empty.
 	 *
-	 * @return <code>true</code> if this dictionary is empty
+	 * @return {@code true} if this dictionary is empty
 	 * @since 3.3
 	 */
 	protected boolean isEmpty() {
@@ -565,7 +565,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	 * Strips non-letter characters from the given word.
 	 * <p>
 	 * This will only happen if the corresponding preference is enabled.
-	 * </p>
+	 * 
 	 *
 	 * @param word the word to strip
 	 * @return the stripped word
@@ -600,7 +600,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	 *
 	 * @param url
 	 *                   The URL of the word list to load
-	 * @return <code>true</code> iff the word list could be loaded, <code>false</code>
+	 * @return {@code true} iff the word list could be loaded, {@code false}
 	 *               otherwise
 	 */
 	protected synchronized boolean load(final URL url) {

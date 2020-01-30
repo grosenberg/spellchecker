@@ -136,8 +136,8 @@ public final class DefaultPhoneticHashProvider implements IPhoneticHashProvider 
 	 *                   The offset where to begin checking in the string
 	 * @param length
 	 *                   The length of the range in the string to check
-	 * @return <code>true</code> iff the string contains one of the
-	 *               candidates, <code>false</code> otherwise.
+	 * @return {@code true} iff the string contains one of the
+	 *               candidates, {@code false} otherwise.
 	 */
 	protected static final boolean hasOneOf(final String[] candidates, final char[] token, final int offset, final int length) {
 
@@ -161,8 +161,8 @@ public final class DefaultPhoneticHashProvider implements IPhoneticHashProvider 
 	 *                   Array of candidates to check
 	 * @param token
 	 *                   The token to check for occurrences of the candidates
-	 * @return <code>true</code> iff the string contains one of the
-	 *               candidates, <code>false</code> otherwise.
+	 * @return {@code true} iff the string contains one of the
+	 *               candidates, {@code false} otherwise.
 	 */
 	protected static final boolean hasOneOf(final String[] candidates, final String token) {
 
@@ -184,7 +184,7 @@ public final class DefaultPhoneticHashProvider implements IPhoneticHashProvider 
 	 *                   The offset where to begin checking in the token
 	 * @param length
 	 *                   The length of the range in the token to check
-	 * @return <code>true</code> iff the token contains a vowel, <code>false</code>
+	 * @return {@code true} iff the token contains a vowel, {@code false}
 	 *               otherwise.
 	 */
 	protected static final boolean hasVowel(final char[] token, final int offset, final int length) {

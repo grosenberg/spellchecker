@@ -36,7 +36,7 @@ public class BasicElementLabels {
 	 * Returns the label of a path.
 	 *
 	 * @param path the path
-	 * @param isOSPath if <code>true</code>, the path represents an OS path, if <code>false</code> it is a workspace path.
+	 * @param isOSPath if {@code true}, the path represents an OS path, if {@code false} it is a workspace path.
 	 * @return the label of the path to be used in the UI.
 	 */
 	public static String getPathLabel(IPath path, boolean isOSPath) {

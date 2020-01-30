@@ -906,8 +906,8 @@ public class JavaPluginImages {
 	/*
 	 * Creates an image descriptor for the given prefix and name in the JDT UI
 	 * bundle. The path can contain variables like $NL$. If no image could be found,
-	 * <code>useMissingImageDescriptor</code> decides if either the 'missing image
-	 * descriptor' is returned or <code>null</code>. or <code>null</code>.
+	 * {@code useMissingImageDescriptor} decides if either the 'missing image
+	 * descriptor' is returned or {@code null}. or {@code null}.
 	 */
 	private static ImageDescriptor create(String prefix, String name, boolean useMissingImageDescriptor) {
 		IPath path = ICONS_PATH.append(prefix).append(name);
@@ -937,8 +937,8 @@ public class JavaPluginImages {
 	/*
 	 * Creates an image descriptor for the given path in a bundle. The path can
 	 * contain variables like $NL$. If no image could be found,
-	 * <code>useMissingImageDescriptor</code> decides if either the 'missing image
-	 * descriptor' is returned or <code>null</code>. Added for 3.1.1.
+	 * {@code useMissingImageDescriptor} decides if either the 'missing image
+	 * descriptor' is returned or {@code null}. Added for 3.1.1.
 	 */
 	public static ImageDescriptor createImageDescriptor(Bundle bundle, IPath path, boolean useMissingImageDescriptor) {
 		URL url = FileLocator.find(bundle, path, null);

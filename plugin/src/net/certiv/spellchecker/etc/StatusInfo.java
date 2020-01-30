@@ -126,7 +126,7 @@ public class StatusInfo implements IStatus {
 	}
 
 	/**
-	 * Returns always <code>false</code>.
+	 * Returns always {@code false}.
 	 * @see IStatus#isMultiStatus()
 	 */
 	public boolean isMultiStatus() {
@@ -148,7 +148,7 @@ public class StatusInfo implements IStatus {
 	}
 
 	/**
-	 * Returns always <code>null</code>.
+	 * Returns always {@code null}.
 	 * @see IStatus#getException()
 	 */
 	public Throwable getException() {

@@ -8,7 +8,6 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-
 package net.certiv.spellchecker.engine;
 
 import java.util.Set;
@@ -20,89 +19,61 @@ import java.util.Set;
  */
 public class SpellEvent implements ISpellEvent {
 
-	/** The begin index of the word in the spell checkable medium */
-	private final int fBegin;
-
-	/** The spell checker that causes the event */
 	private final ISpellChecker fChecker;
-
-	/** The end index of the word in the spell checkable medium */
+	private final int fBegin;
 	private final int fEnd;
-
-	/** Was the word found in the dictionary? */
-	private final boolean fMatch;
-
-	/** Does the word start a new sentence? */
-	private final boolean fSentence;
-
-	/** The word that causes the spell event */
 	private final String fWord;
+	private final boolean fSentence;
+	private final boolean fMatch;
 
 	/**
 	 * Creates a new spell event.
 	 *
-	 * @param checker
-	 *                   The spell checker that causes the event
-	 * @param word
-	 *                   The word that causes the event
-	 * @param begin
-	 *                   The begin index of the word in the spell checkable medium
-	 * @param end
-	 *                   The end index of the word in the spell checkable medium
-	 * @param sentence
-	 *                   <code>true</code> iff the word starts a new sentence,
-	 *                   <code>false</code> otherwise
-	 * @param match
-	 *                   <code>true</code> iff the word was found in the dictionary,
-	 *                   <code>false</code> otherwise
+	 * @param checker The spell checker that causes the event
+	 * @param word The word that causes the event
+	 * @param begin The begin index of the word in the spell checkable medium
+	 * @param end The end index of the word in the spell checkable medium
+	 * @param sentence {@code true} iff the word starts a new sentence,
+	 *            {@code false} otherwise
+	 * @param match {@code true} iff the word was found in the dictionary,
+	 *            {@code false} otherwise
 	 */
-	protected SpellEvent(final ISpellChecker checker, final String word, final int begin, final int end, final boolean sentence, final boolean match) {
-		fChecker= checker;
-		fEnd= end;
-		fBegin= begin;
-		fWord= word;
-		fSentence= sentence;
-		fMatch= match;
+	protected SpellEvent(final ISpellChecker checker, final String word, final int begin, final int end,
+			final boolean sentence, final boolean match) {
+		fChecker = checker;
+		fEnd = end;
+		fBegin = begin;
+		fWord = word;
+		fSentence = sentence;
+		fMatch = match;
 	}
 
-	/*
-	 * @see net.certiv.spellchecker.engine.ISpellEvent#getBegin()
-	 */
+	@Override
 	public final int getBegin() {
 		return fBegin;
 	}
 
-	/*
-	 * @see net.certiv.spellchecker.engine.ISpellEvent#getEnd()
-	 */
+	@Override
 	public final int getEnd() {
 		return fEnd;
 	}
 
-	/*
-	 * @see net.certiv.spellchecker.engine.ISpellEvent#getProposals()
-	 */
+	@Override
 	public final Set<RankedWordProposal> getProposals() {
 		return fChecker.getProposals(fWord, fSentence);
 	}
 
-	/*
-	 * @see net.certiv.spellchecker.engine.ISpellEvent#getWord()
-	 */
+	@Override
 	public final String getWord() {
 		return fWord;
 	}
 
-	/*
-	 * @see net.certiv.spellchecker.engine.ISpellEvent#isMatch()
-	 */
+	@Override
 	public final boolean isMatch() {
 		return fMatch;
 	}
 
-	/*
-	 * @see net.certiv.spellchecker.engine.ISpellEvent#isStart()
-	 */
+	@Override
 	public final boolean isStart() {
 		return fSentence;
 	}

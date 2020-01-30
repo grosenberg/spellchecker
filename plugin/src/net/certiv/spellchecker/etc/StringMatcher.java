@@ -70,11 +70,11 @@ public class StringMatcher {
 	}
 	/**
 	 * Find the first occurrence of the pattern between <code>start</code)(inclusive)
-	 * and <code>end</code>(exclusive).
+	 * and {@code end}(exclusive).
 	 * @param text the String object to search in
 	 * @param start the starting index of the search range, inclusive
 	 * @param end the ending index of the search range, exclusive
-	 * @return an <code>StringMatcher.Position</code> object that keeps the starting
+	 * @return an {@code StringMatcher.Position} object that keeps the starting
 	 * (inclusive) and ending positions (exclusive) of the first occurrence of the
 	 * pattern in the specified range of the text; return null if not found or subtext
 	 * is empty (start==end). A pair of zeros is returned if pattern is empty string
@@ -122,7 +122,7 @@ public class StringMatcher {
 		return new Position(matchStart, curPos);
 	}
 	/**
-	 * match the given <code>text</code> with the pattern
+	 * match the given {@code text} with the pattern
 	 * @return true if matched eitherwise false
 	 * @param text a String object
 	 */
@@ -131,7 +131,7 @@ public class StringMatcher {
 	}
 	/**
 	 * Given the starting (inclusive) and the ending (exclusive) positions in the
-	 * <code>text</code>, determine if the given substring matches with aPattern
+	 * {@code text}, determine if the given substring matches with aPattern
 	 * @return true if the specified portion of the text matches the pattern
 	 * @param text a String object that contains the substring to match
 	 * @param start marks the starting position (inclusive) of the substring

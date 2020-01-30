@@ -64,7 +64,7 @@ public class TaskTagDictionary extends AbstractSpellDictionary implements IPrope
 	/**
 	 * Handles the compiler task tags property change event.
 	 *
-	 * @return  <code>true</code> if the task tags got updated
+	 * @return  {@code true} if the task tags got updated
 	 */
 	protected boolean updateTaskTags() {
 		return true;

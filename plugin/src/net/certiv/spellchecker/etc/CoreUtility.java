@@ -51,7 +51,7 @@ public class CoreUtility {
 	/**
 	 * Creates a folder and all parent folders if not existing.
 	 * Project must exist.
-	 * <code> org.eclipse.ui.dialogs.ContainerGenerator</code> is too heavy
+	 * {@code  org.eclipse.ui.dialogs.ContainerGenerator} is too heavy
 	 * (creates a runnable)
 	 * @param folder the folder to create
 	 * @param force a flag controlling how to deal with resources that
@@ -110,7 +110,7 @@ public class CoreUtility {
 
 	/**
 	 * Starts a build in the background.
-	 * @param project The project to build or <code>null</code> to build the workspace.
+	 * @param project The project to build or {@code null} to build the workspace.
 	 */
 	public static void startBuildInBackground(final IProject project) {
 		getBuildJob(project).schedule();
@@ -178,7 +178,7 @@ public class CoreUtility {
 
 	/**
 	 * Returns a build job
-	 * @param project The project to build or <code>null</code> to build the workspace.
+	 * @param project The project to build or {@code null} to build the workspace.
 	 * @return the build job
 	 */
 	public static Job getBuildJob(final IProject project) {
@@ -192,7 +192,7 @@ public class CoreUtility {
 	 * Sets whether building automatically is enabled in the workspace or not and returns the old
 	 * value.
 	 *
-	 * @param state <code>true</code> if automatically building is enabled, <code>false</code>
+	 * @param state {@code true} if automatically building is enabled, {@code false}
 	 *            otherwise
 	 * @return the old state
 	 * @throws CoreException thrown if the operation failed

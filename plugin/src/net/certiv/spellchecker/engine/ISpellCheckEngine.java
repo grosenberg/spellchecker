@@ -17,7 +17,7 @@ import java.util.Locale;
  * Interface for a spell check engine.
  * <p>
  * This engine can be configured with multiple dictionaries.
- * </p>
+ * 
  *
  * @since 3.0
  */
@@ -29,9 +29,9 @@ public interface ISpellCheckEngine {
 	 * <p>
 	 * <strong>Note:</strong> Changes to the spelling engine dictionaries are not propagated to this
 	 * spell checker.
-	 * </p>
+	 * 
 	 *
-	 * @return a configured instance of the spell checker or <code>null</code> if none
+	 * @return a configured instance of the spell checker or {@code null} if none
 	 * @throws IllegalStateException if called after being shut down
 	 */
 	ISpellChecker getSpellChecker() throws IllegalStateException;
@@ -62,17 +62,17 @@ public interface ISpellCheckEngine {
 	 * Shuts down this spell check engine and its associated components.
 	 * <p>
 	 * Further calls to this engine result in exceptions.
-	 * </p>
+	 * 
 	 */
 	void shutdown();
 
 	/**
 	 * Unregisters a dictionary previously registered either by a call to
-	 * <code>registerDictionary(Locale,ISpellDictionary)</code> or
-	 * <code>registerDictionary(ISpellDictionary)</code>.
+	 * {@code registerDictionary(Locale,ISpellDictionary)} or
+	 * {@code registerDictionary(ISpellDictionary)}.
 	 * <p>
 	 * If the dictionary was not registered before, nothing happens.
-	 * </p>
+	 * 
 	 *
 	 * @param dictionary the dictionary to unregister
 	 */

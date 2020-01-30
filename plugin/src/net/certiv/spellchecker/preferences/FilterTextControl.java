@@ -11,6 +11,7 @@
 package net.certiv.spellchecker.preferences;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ResourceLocator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.ACC;
 import org.eclipse.swt.accessibility.AccessibleAdapter;
@@ -35,37 +36,36 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * A simple filter text widget.
- *
- * TODO: Remove this class once Bug 293230 is fixed
+ * A simple filter text widget. TODO: Remove this class once Bug 293230 is fixed
  */
 public class FilterTextControl {
+
+	private static final String DCLEAR = "$nl$/icons/full/dtool16/clear_co.gif";
+	private static final String ECLEAR = "$nl$/icons/full/etool16/clear_co.gif";
 
 	/**
 	 * Image descriptor for enabled clear button.
 	 */
-	private static ImageDescriptor fgClearIconDescriptor= AbstractUIPlugin
-			.imageDescriptorFromPlugin(PlatformUI.PLUGIN_ID, "$nl$/icons/full/etool16/clear_co.gif"); //$NON-NLS-1$
+	private static ImageDescriptor fgClearIconDescriptor = ResourceLocator
+			.imageDescriptorFromBundle(PlatformUI.PLUGIN_ID, ECLEAR).orElse(null);
 
 	/**
 	 * Image descriptor for disabled clear button.
 	 */
-	private static ImageDescriptor fgDisabledClearIconDescriptor= AbstractUIPlugin.imageDescriptorFromPlugin(
-			PlatformUI.PLUGIN_ID, "$nl$/icons/full/dtool16/clear_co.gif"); //$NON-NLS-1$
-
+	private static ImageDescriptor fgDisabledClearIconDescriptor = ResourceLocator
+			.imageDescriptorFromBundle(PlatformUI.PLUGIN_ID, DCLEAR).orElse(null);
 
 	private static Boolean fgUseNativeSearchField;
 
 	private static boolean useNativeSearchField(Composite composite) {
 		if (fgUseNativeSearchField == null) {
-			fgUseNativeSearchField= Boolean.FALSE;
-			Text testText= null;
+			fgUseNativeSearchField = Boolean.FALSE;
+			Text testText = null;
 			try {
-				testText= new Text(composite, SWT.SEARCH | SWT.ICON_CANCEL);
-				fgUseNativeSearchField= new Boolean((testText.getStyle() & SWT.ICON_CANCEL) != 0);
+				testText = new Text(composite, SWT.SEARCH | SWT.ICON_CANCEL);
+				fgUseNativeSearchField = new Boolean((testText.getStyle() & SWT.ICON_CANCEL) != 0);
 			} finally {
 				if (testText != null) {
 					testText.dispose();
@@ -91,27 +91,25 @@ public class FilterTextControl {
 	private Composite fComposite;
 
 	public FilterTextControl(Composite parent) {
-		final boolean nativeField= useNativeSearchField(parent);
-		fComposite= new Composite(parent, nativeField ? SWT.NONE : SWT.BORDER) {
+		final boolean nativeField = useNativeSearchField(parent);
+		fComposite = new Composite(parent, nativeField ? SWT.NONE : SWT.BORDER) {
 			@Override
 			public void setEnabled(boolean enabled) {
 				super.setEnabled(enabled);
 
-				if (nativeField)
-					return;
+				if (nativeField) return;
 
-				Color color= enabled ? getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND) : getParent().getBackground();
+				Color color = enabled ? getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND)
+						: getParent().getBackground();
 				setBackground(color);
-				if (fClearButton != null)
-					fClearButton.setBackground(color);
+				if (fClearButton != null) fClearButton.setBackground(color);
 			}
 		};
-		if (!nativeField)
-			fComposite.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
+		if (!nativeField) fComposite.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 
-		GridLayout filterLayout= new GridLayout(2, false);
-		filterLayout.marginHeight= 0;
-		filterLayout.marginWidth= 0;
+		GridLayout filterLayout = new GridLayout(2, false);
+		filterLayout.marginHeight = 0;
+		filterLayout.marginWidth = 0;
 		fComposite.setLayout(filterLayout);
 		fComposite.setFont(parent.getFont());
 
@@ -122,7 +120,7 @@ public class FilterTextControl {
 	/**
 	 * Create the filter controls.
 	 *
-	 * @param parent parent <code>Composite</code> of the filter controls
+	 * @param parent parent {@code Composite} of the filter controls
 	 */
 	private void createControls(Composite parent) {
 		createTextControl(parent);
@@ -133,23 +131,23 @@ public class FilterTextControl {
 	/**
 	 * Creates the text control.
 	 *
-	 * @param parent <code>Composite</code> of the filter text
+	 * @param parent {@code Composite} of the filter text
 	 */
 	private void createTextControl(Composite parent) {
 		if (useNativeSearchField(parent)) {
-			fTextControl= new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.SEARCH | SWT.ICON_CANCEL);
+			fTextControl = new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.SEARCH | SWT.ICON_CANCEL);
 		} else {
-			fTextControl= new Text(parent, SWT.SINGLE);
+			fTextControl = new Text(parent, SWT.SINGLE);
 		}
 
-		GridData gridData= new GridData(SWT.FILL, SWT.CENTER, true, false);
+		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		// if the text widget supported cancel then it will have it's own
 		// integrated button. We can take all of the space.
-		if ((fTextControl.getStyle() & SWT.ICON_CANCEL) != 0)
-			gridData.horizontalSpan= 2;
+		if ((fTextControl.getStyle() & SWT.ICON_CANCEL) != 0) gridData.horizontalSpan = 2;
 		fTextControl.setLayoutData(gridData);
 
 		fTextControl.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(ModifyEvent e) {
 				updateClearButtonVisibility(!(fTextControl.getText().length() == 0));
 			}
@@ -159,16 +157,16 @@ public class FilterTextControl {
 	/**
 	 * Creates the button that clears the text.
 	 *
-	 * @param parent parent <code>Composite</code> of button
+	 * @param parent parent {@code Composite} of button
 	 */
 	private void createClearButton(Composite parent) {
 		// only create the button if the text widget doesn't support one natively
 		if ((fTextControl.getStyle() & SWT.ICON_CANCEL) == 0) {
-			final Image inactiveImage= fgDisabledClearIconDescriptor.createImage();
-			final Image activeImage= fgClearIconDescriptor.createImage();
-			final Image pressedImage= new Image(parent.getDisplay(), activeImage, SWT.IMAGE_GRAY);
+			final Image inactiveImage = fgDisabledClearIconDescriptor.createImage();
+			final Image activeImage = fgClearIconDescriptor.createImage();
+			final Image pressedImage = new Image(parent.getDisplay(), activeImage, SWT.IMAGE_GRAY);
 
-			final Label clearButton= new Label(parent, SWT.NONE);
+			final Label clearButton = new Label(parent, SWT.NONE);
 			clearButton.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 			clearButton.setImage(inactiveImage);
 			clearButton.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
@@ -179,13 +177,14 @@ public class FilterTextControl {
 				@Override
 				public void mouseDown(MouseEvent e) {
 					clearButton.setImage(pressedImage);
-					fMoveListener= new MouseMoveListener() {
-						private boolean fMouseInButton= true;
+					fMoveListener = new MouseMoveListener() {
+						private boolean fMouseInButton = true;
 
+						@Override
 						public void mouseMove(MouseEvent e1) {
-							boolean mouseInButton= isMouseInButton(e1);
+							boolean mouseInButton = isMouseInButton(e1);
 							if (mouseInButton != fMouseInButton) {
-								fMouseInButton= mouseInButton;
+								fMouseInButton = mouseInButton;
 								clearButton.setImage(mouseInButton ? pressedImage : inactiveImage);
 							}
 						}
@@ -197,8 +196,8 @@ public class FilterTextControl {
 				public void mouseUp(MouseEvent e) {
 					if (fMoveListener != null) {
 						clearButton.removeMouseMoveListener(fMoveListener);
-						fMoveListener= null;
-						boolean mouseInButton= isMouseInButton(e);
+						fMoveListener = null;
+						boolean mouseInButton = isMouseInButton(e);
 						clearButton.setImage(mouseInButton ? activeImage : inactiveImage);
 						if (mouseInButton) {
 							fTextControl.setText(""); //$NON-NLS-1$
@@ -208,49 +207,51 @@ public class FilterTextControl {
 				}
 
 				private boolean isMouseInButton(MouseEvent e) {
-					Point buttonSize= clearButton.getSize();
+					Point buttonSize = clearButton.getSize();
 					return 0 <= e.x && e.x < buttonSize.x && 0 <= e.y && e.y < buttonSize.y;
 				}
 			});
 			clearButton.addMouseTrackListener(new MouseTrackListener() {
+				@Override
 				public void mouseEnter(MouseEvent e) {
 					clearButton.setImage(activeImage);
 				}
 
+				@Override
 				public void mouseExit(MouseEvent e) {
 					clearButton.setImage(inactiveImage);
 				}
 
-				public void mouseHover(MouseEvent e) {
-				}
+				@Override
+				public void mouseHover(MouseEvent e) {}
 			});
 			clearButton.addDisposeListener(new DisposeListener() {
+				@Override
 				public void widgetDisposed(DisposeEvent e) {
 					inactiveImage.dispose();
 					activeImage.dispose();
 					pressedImage.dispose();
 				}
 			});
-			clearButton.getAccessible().addAccessibleListener(
-					new AccessibleAdapter() {
-						@Override
-						public void getName(AccessibleEvent e) {
-							e.result= PreferencesMessages.FilterTextControl_ClearFilterField;
-						}
-					});
-			clearButton.getAccessible().addAccessibleControlListener(
-					new AccessibleControlAdapter() {
-						@Override
-						public void getRole(AccessibleControlEvent e) {
-							e.detail= ACC.ROLE_PUSHBUTTON;
-						}
-					});
-			this.fClearButton= clearButton;
+			clearButton.getAccessible().addAccessibleListener(new AccessibleAdapter() {
+				@Override
+				public void getName(AccessibleEvent e) {
+					e.result = PreferencesMessages.FilterTextControl_ClearFilterField;
+				}
+			});
+			clearButton.getAccessible().addAccessibleControlListener(new AccessibleControlAdapter() {
+				@Override
+				public void getRole(AccessibleControlEvent e) {
+					e.detail = ACC.ROLE_PUSHBUTTON;
+				}
+			});
+			this.fClearButton = clearButton;
 		}
 	}
 
 	/**
-	 * Get the text control for the receiver, if it was created. Otherwise return <code>null</code>.
+	 * Get the text control for the receiver, if it was created. Otherwise return
+	 * {@code null}.
 	 *
 	 * @return the Text control, or null if it was not created
 	 */
@@ -259,8 +260,8 @@ public class FilterTextControl {
 	}
 
 	/**
-	 * Convenience method to return the text of the filter control. If the text widget is not
-	 * created, then null is returned.
+	 * Convenience method to return the text of the filter control. If the text
+	 * widget is not created, then null is returned.
 	 *
 	 * @return String in the text, or null if the text does not exist
 	 */

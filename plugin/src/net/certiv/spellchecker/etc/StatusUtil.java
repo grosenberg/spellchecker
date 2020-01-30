@@ -21,7 +21,7 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 public class StatusUtil {
 
 	/**
-	 * Compares two instances of <code>IStatus</code>. The more severe is returned:
+	 * Compares two instances of {@code IStatus}. The more severe is returned:
 	 * An error is more severe than a warning, and a warning is more severe
 	 * than ok. If the two stati have the same severity, the second is returned.
 	 * @param s1 first status

@@ -32,7 +32,7 @@ public interface ISpellChecker {
 	/**
 	 * Returns whether this spell checker accepts word additions.
 	 *
-	 * @return <code>true</code> if word additions are accepted, <code>false</code> otherwise
+	 * @return {@code true} if word additions are accepted, {@code false} otherwise
 	 */
 	boolean acceptsWords();
 
@@ -45,7 +45,7 @@ public interface ISpellChecker {
 	void addWord(String word);
 
 	/**
-	 * Checks the specified word until calling <code>ignoreWord(String)</code>.
+	 * Checks the specified word until calling {@code ignoreWord(String)}.
 	 *
 	 * @param word
 	 *                   The word to check
@@ -67,14 +67,14 @@ public interface ISpellChecker {
 	 * @param word
 	 *                   The word to retrieve the proposals for
 	 * @param sentence
-	 *                   <code>true</code> iff the proposals should start a
-	 *                   sentence, <code>false</code> otherwise
+	 *                   {@code true} iff the proposals should start a
+	 *                   sentence, {@code false} otherwise
 	 * @return Set of ranked proposals for the word
 	 */
 	Set<RankedWordProposal> getProposals(String word, boolean sentence);
 
 	/**
-	 * Ignores the specified word until calling <code>checkWord(String)</code>.
+	 * Ignores the specified word until calling {@code checkWord(String)}.
 	 *
 	 * @param word
 	 *                   The word to ignore
@@ -87,7 +87,7 @@ public interface ISpellChecker {
 	 *
 	 * @param word
 	 *                   The word to check its spelling
-	 * @return <code>true</code> iff the word is correctly spelled, <code>false</code>
+	 * @return {@code true} iff the word is correctly spelled, {@code false}
 	 *               otherwise
 	 */
 	boolean isCorrect(String word);

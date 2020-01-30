@@ -3,7 +3,7 @@ package net.certiv.spellchecker.etc;
 
 /**
  * Richer description of a Java problem, as detected by the compiler or some of the underlying
- * technology reusing the compiler. With the introduction of <code>org.eclipse.jdt.core.compiler.CompilationParticipant</code>,
+ * technology reusing the compiler. With the introduction of {@code org.eclipse.jdt.core.compiler.CompilationParticipant},
  * the simpler problem interface {@link IProblem} did not carry enough information to better
  * separate and categorize Java problems. In order to minimize impact on existing API, Java problems
  * are still passed around as {@link IProblem}, though actual implementations should explicitly
@@ -36,13 +36,13 @@ package net.certiv.spellchecker.etc;
  * defining their own domain specific problem/category IDs.
  * <p>
  * Note: standard Java problems produced by Java default tooling will set the marker
- * <code> IMarker#SOURCE_ID</code> attribute to
- * <code> JavaBuilder#SOURCE_ID</code>; compiler
- * participants may specify the <code> IMarker#SOURCE_ID</code>
+ * {@code  IMarker#SOURCE_ID} attribute to
+ * {@code  JavaBuilder#SOURCE_ID}; compiler
+ * participants may specify the {@code  IMarker#SOURCE_ID}
  * attribute of their markers by adding it to the extra marker attributes of the problems they generate;
  * markers resulting from compiler participants' problems that do not have the
- * <code> IMarker#SOURCE_ID</code> extra attribute set do not have the
- * <code> JavaBuilder#SOURCE_ID</code> attribute set either.
+ * {@code  IMarker#SOURCE_ID} extra attribute set do not have the
+ * {@code  JavaBuilder#SOURCE_ID} attribute set either.
  *
  * @since 3.2
  */
@@ -110,17 +110,17 @@ public static final String[] NO_STRINGS = new String[0];
  * by the JavaBuilder. Extra attributes are only optional, and are allowing client customization of generated
  * markers. By default, no EXTRA attributes is persisted, and a categorized problem only persists the following attributes:
  * <ul>
- * <li>	<code>IMarker#MESSAGE</code> -&gt; {@link IProblem#getMessage()}</li>
- * <li>	<code>IMarker#SEVERITY</code> -&gt; <code> IMarker#SEVERITY_ERROR</code> or
- *         <code>IMarker#SEVERITY_WARNING</code> depending on {@link IProblem#isError()} or {@link IProblem#isWarning()}</li>
- * <li>	<code>IJavaModelMarker#ID</code> -&gt; {@link IProblem#getID()}</li>
- * <li>	<code>IMarker#CHAR_START</code>  -&gt; {@link IProblem#getSourceStart()}</li>
- * <li>	<code>IMarker#CHAR_END</code>  -&gt; {@link IProblem#getSourceEnd()}</li>
- * <li>	<code>IMarker#LINE_NUMBER</code>  -&gt; {@link IProblem#getSourceLineNumber()}</li>
- * <li>	<code>IJavaModelMarker#ARGUMENTS</code>  -&gt; some <code>String[]</code> used to compute quickfixes </li>
- * <li>	<code>IJavaModelMarker#CATEGORY_ID</code> -&gt; {@link CategorizedProblem#getCategoryID()}</li>
+ * <li>	{@code IMarker#MESSAGE} -&gt; {@link IProblem#getMessage()}</li>
+ * <li>	{@code IMarker#SEVERITY} -&gt; {@code  IMarker#SEVERITY_ERROR} or
+ *         {@code IMarker#SEVERITY_WARNING} depending on {@link IProblem#isError()} or {@link IProblem#isWarning()}</li>
+ * <li>	{@code IJavaModelMarker#ID} -&gt; {@link IProblem#getID()}</li>
+ * <li>	{@code IMarker#CHAR_START}  -&gt; {@link IProblem#getSourceStart()}</li>
+ * <li>	{@code IMarker#CHAR_END}  -&gt; {@link IProblem#getSourceEnd()}</li>
+ * <li>	{@code IMarker#LINE_NUMBER}  -&gt; {@link IProblem#getSourceLineNumber()}</li>
+ * <li>	{@code IJavaModelMarker#ARGUMENTS}  -&gt; some {@code String[]} used to compute quickfixes </li>
+ * <li>	{@code IJavaModelMarker#CATEGORY_ID} -&gt; {@link CategorizedProblem#getCategoryID()}</li>
  * </ul>
- * The names must be eligible for marker creation, as defined by <code>IMarker#setAttributes(String[], Object[])</code>,
+ * The names must be eligible for marker creation, as defined by {@code IMarker#setAttributes(String[], Object[])},
  * and there must be as many names as values according to {@link #getExtraMarkerAttributeValues()}.
  * Note that extra marker attributes will be inserted after default ones (as described in {@link CategorizedProblem#getMarkerType()},
  * and thus could be used to override defaults.

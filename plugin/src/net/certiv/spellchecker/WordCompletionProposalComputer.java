@@ -42,10 +42,10 @@ package net.certiv.spellchecker;
 // * <strong>Note:</strong> This is currently not supported because the spelling engine
 // * cannot return word proposals but only correction proposals.
 // * <p>
-// * If we enable this again we must register the computer in <code>plugin.xml</code>:
+// * If we enable this again we must register the computer in {@code plugin.xml}:
 // * <pre>
 // * </pre>
-// * </p>
+// * 
 // *
 // * @since 3.0
 // */

@@ -36,7 +36,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	 * Does this word contain digits?
 	 *
 	 * @param word the word to check
-	 * @return <code>true</code> iff this word contains digits, <code>false></code> otherwise
+	 * @return {@code true} iff this word contains digits, {@code false>} otherwise
 	 */
 	protected static boolean isDigits(final String word) {
 
@@ -51,9 +51,9 @@ public class DefaultSpellChecker implements ISpellChecker {
 	 * Does this word contain mixed-case letters?
 	 *
 	 * @param word The word to check
-	 * @param sentence <code>true</code> iff the specified word starts a new sentence,
-	 *            <code>false</code> otherwise
-	 * @return <code>true</code> iff the contains mixed-case letters, <code>false</code> otherwise
+	 * @param sentence {@code true} iff the specified word starts a new sentence,
+	 *            {@code false} otherwise
+	 * @return {@code true} iff the contains mixed-case letters, {@code false} otherwise
 	 */
 	protected static boolean isMixedCase(final String word, final boolean sentence) {
 
@@ -80,7 +80,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	 * Does this word contain upper-case letters only?
 	 *
 	 * @param word The word to check
-	 * @return <code>true</code> iff this word only contains upper-case letters, <code>false</code>
+	 * @return {@code true} iff this word only contains upper-case letters, {@code false}
 	 *         otherwise
 	 */
 	protected static boolean isUpperCase(final String word) {
@@ -96,7 +96,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	 * Does this word look like an URL?
 	 *
 	 * @param word The word to check
-	 * @return <code>true</code> iff this word looks like an URL, <code>false</code> otherwise
+	 * @return {@code true} iff this word looks like an URL, {@code false} otherwise
 	 */
 	protected static boolean isUrl(final String word) {
 
@@ -118,7 +118,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	private final Set<String> fIgnored = Collections.synchronizedSet(new HashSet<String>());
 
 	/**
-	 * The preference store. Assumes the <code>IPreferenceStore</code> implementation is thread
+	 * The preference store. Assumes the {@code IPreferenceStore} implementation is thread
 	 * safe.
 	 */
 	private final IPreferenceStore fPreferences;

@@ -23,7 +23,7 @@ public interface ISpellDictionary {
 	/**
 	 * Returns whether this dictionary accepts new words.
 	 *
-	 * @return <code>true</code> if this dictionary accepts new words, <code>false</code> otherwise
+	 * @return {@code true} if this dictionary accepts new words, {@code false} otherwise
 	 */
 	public boolean acceptsWords();
 
@@ -41,8 +41,8 @@ public interface ISpellDictionary {
 	 * @param word
 	 *                   The word to retrieve the proposals for
 	 * @param sentence
-	 *                   <code>true</code> iff the proposals start a new sentence,
-	 *                   <code>false</code> otherwise
+	 *                   {@code true} iff the proposals start a new sentence,
+	 *                   {@code false} otherwise
 	 * @return Array of ranked word proposals
 	 */
 	public Set<RankedWordProposal> getProposals(String word, boolean sentence);
@@ -51,14 +51,14 @@ public interface ISpellDictionary {
 	 * Is the specified word correctly spelled?
 	 *
 	 * @param word the word to spell check
-	 * @return <code>true</code> iff this word is correctly spelled, <code>false</code> otherwise
+	 * @return {@code true} iff this word is correctly spelled, {@code false} otherwise
 	 */
 	public boolean isCorrect(String word);
 
 	/**
 	 * Is the dictionary loaded?
 	 *
-	 * @return <code>true</code> iff it is loaded, <code>false</code> otherwise
+	 * @return {@code true} iff it is loaded, {@code false} otherwise
 	 */
 	public boolean isLoaded();
 
@@ -70,7 +70,7 @@ public interface ISpellDictionary {
 	/**
 	 * Tells whether to strip non-letters from word boundaries.
 	 *
-	 * @param state <code>true</code> if non-letters should be stripped
+	 * @param state {@code true} if non-letters should be stripped
 	 * @since 3.3
 	 */
 	public void setStripNonLetters(boolean state);

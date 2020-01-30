@@ -32,7 +32,7 @@ import org.eclipse.ui.texteditor.spelling.SpellingContext;
  * Internally this spelling engine uses a different spelling engine depending on the
  * {@linkplain IContentType content type}. Currently this engine supports the text, Java and Java
  * properties file content types.
- * </p>
+ * 
  *
  * @since 3.1
  */
@@ -61,11 +61,11 @@ public class DefaultSpellingEngine implements ISpellingEngine {
 	}
 
 	/**
-	 * Returns a spelling engine for the given content type or <code>null</code> if none could be
+	 * Returns a spelling engine for the given content type or {@code null} if none could be
 	 * found.
 	 *
 	 * @param contentType the content type
-	 * @return a spelling engine for the given content type or <code>null</code> if none could be
+	 * @return a spelling engine for the given content type or {@code null} if none could be
 	 *         found
 	 */
 	private ISpellingEngine getEngine(IContentType contentType) {

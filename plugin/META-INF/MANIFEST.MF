@@ -3,7 +3,7 @@ Automatic-Module-Name: net.certiv.spellchecker
 Bundle-ManifestVersion: 2
 Bundle-Name: Spellchecker
 Bundle-SymbolicName: net.certiv.spellchecker;singleton:=true
-Bundle-Version: 3.3.2.qualifier
+Bundle-Version: 3.3.3.qualifier
 Bundle-Activator: net.certiv.spellchecker.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text,

@@ -15,7 +15,7 @@ package net.certiv.spellchecker.engine;
  * Default phonetic distance algorithm for English words.
  * <p>
  * This algorithm implements the Levenshtein text edit distance.
- * </p>
+ * 
  *
  * @since 3.0
  */

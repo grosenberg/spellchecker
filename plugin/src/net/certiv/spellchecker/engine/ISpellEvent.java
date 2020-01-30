@@ -51,14 +51,14 @@ public interface ISpellEvent {
 	/**
 	 * Was the incorrectly spelled word found in the dictionary?
 	 *
-	 * @return <code>true</code> iff the word was found, <code>false</code> otherwise
+	 * @return {@code true} iff the word was found, {@code false} otherwise
 	 */
 	public boolean isMatch();
 
 	/**
 	 * Does the incorrectly spelled word start a new sentence?
 	 *
-	 * @return <code>true<code> iff the word starts a new sentence, <code>false</code> otherwise
+	 * @return {@code true<code> iff the word starts a new sentence, <code>false} otherwise
 	 */
 	public boolean isStart();
 }

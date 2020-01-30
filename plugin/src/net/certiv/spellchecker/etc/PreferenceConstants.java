@@ -26,7 +26,7 @@ import net.certiv.spellchecker.SpellCheckEngine;
  * preference store programmatically.
  * <p>
  * This class it is not intended to be instantiated or subclassed by clients.
- * </p>
+ * 
  *
  * @since 2.0
  *
@@ -39,8 +39,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether Java comments should be
 	 * spell checked.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @deprecated since 3.1, use {@link org.eclipse.ui.texteditor.spelling.SpellingService#PREFERENCE_SPELLING_ENABLED}
 	 *             and {@link org.eclipse.ui.texteditor.spelling.SpellingService#PREFERENCE_SPELLING_ENGINE}
@@ -52,8 +52,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether words containing digits should
 	 * be skipped during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -63,8 +63,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether mixed case words should be
 	 * skipped during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -74,8 +74,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether sentence capitalization should
 	 * be ignored during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -85,8 +85,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether upper case words should be
 	 * skipped during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -96,8 +96,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether URLs should be ignored during
 	 * spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -107,8 +107,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether single letters
 	 * should be ignored during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.3
 	 */
@@ -118,8 +118,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether '&' in
 	 * Java properties files are ignored.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.3
 	 */
@@ -129,8 +129,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether non-letters at word boundaries
 	 * should be ignored during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.3
 	 */
@@ -140,8 +140,8 @@ public class PreferenceConstants {
 	 * A named preference that controls whether Java strings
 	 * should be ignored during spell checking.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.4
 	 */
@@ -150,8 +150,8 @@ public class PreferenceConstants {
 	/**
 	 * A named preference that controls the locale used for spell checking.
 	 * <p>
-	 * Value is of type <code>String</code>.
-	 * </p>
+	 * Value is of type {@code String}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -161,8 +161,8 @@ public class PreferenceConstants {
 	 * A named preference that controls the number of proposals offered during
 	 * spell checking.
 	 * <p>
-	 * Value is of type <code>Integer</code>.
-	 * </p>
+	 * Value is of type {@code Integer}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -171,8 +171,8 @@ public class PreferenceConstants {
 	/**
 	 * A named preference that controls the maximum number of problems reported during spell checking.
 	 * <p>
-	 * Value is of type <code>Integer</code>.
-	 * </p>
+	 * Value is of type {@code Integer}.
+	 * 
 	 *
 	 * @since 3.4
 	 */
@@ -181,8 +181,8 @@ public class PreferenceConstants {
 	/**
 	 * A named preference that specifies the workspace user dictionary.
 	 * <p>
-	 * Value is of type <code>Integer</code>.
-	 * </p>
+	 * Value is of type {@code Integer}.
+	 * 
 	 *
 	 * @since 3.0
 	 */
@@ -191,8 +191,8 @@ public class PreferenceConstants {
 	/**
 	 * A named preference that specifies encoding of the workspace user dictionary.
 	 * <p>
-	 * Value is of type <code>String</code>.
-	 * </p>
+	 * Value is of type {@code String}.
+	 * 
 	 *
 	 * @since 3.3
 	 */
@@ -204,8 +204,8 @@ public class PreferenceConstants {
 	 * <strong>Note:</strong> This is currently not supported because the spelling engine
 	 * cannot return word proposals but only correction proposals.
 	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
+	 * Value is of type {@code Boolean}.
+	 * 
 	 *
 	 * @since 3.0
 	 */

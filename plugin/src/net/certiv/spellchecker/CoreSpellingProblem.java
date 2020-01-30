@@ -16,7 +16,6 @@ import org.eclipse.jface.text.IRegion;
 
 import net.certiv.spellchecker.etc.CategorizedProblem;
 
-
 /**
  * Spelling problem to be accepted by problem requesters.
  *
@@ -24,18 +23,19 @@ import net.certiv.spellchecker.etc.CategorizedProblem;
  */
 public class CoreSpellingProblem extends CategorizedProblem {
 
-	// spelling 'marker type' name. Only virtual as spelling problems are never persisted in markers.
+	// spelling 'marker type' name. Only virtual as spelling problems
+	// are never persisted in markers.
 	// marker type is used in the quickFixProcessor extension point
-	public static final String MARKER_TYPE= "net.certiv.spellchecker.spellchecker.marker"; //$NON-NLS-1$
+	public static final String MARKER_TYPE = "spellchecker.marker"; //$NON-NLS-1$
 
 	/** The end offset of the problem */
-	private int fSourceEnd= 0;
+	private int fSourceEnd = 0;
 
 	/** The line number of the problem */
-	private int fLineNumber= 1;
+	private int fLineNumber = 1;
 
 	/** The start offset of the problem */
-	private int fSourceStart= 0;
+	private int fSourceStart = 0;
 
 	/** The description of the problem */
 	private String fMessage;
@@ -63,50 +63,55 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	 * @param line the line
 	 * @param message the message
 	 * @param word the word
-	 * @param match <code>true</code> iff the word was found in the dictionary
-	 * @param sentence <code>true</code> iff the word starts a sentence
+	 * @param match {@code true} iff the word was found in the dictionary
+	 * @param sentence {@code true} iff the word starts a sentence
 	 * @param document the document
 	 * @param origin the originating file name
 	 */
-	public CoreSpellingProblem(int start, int end, int line, String message, String word, boolean match, boolean sentence, IDocument document, String origin) {
+	public CoreSpellingProblem(int start, int end, int line, String message, String word, boolean match,
+			boolean sentence, IDocument document, String origin) {
 		super();
-		fSourceStart= start;
-		fSourceEnd= end;
-		fLineNumber= line;
-		fMessage= message;
-		fWord= word;
-		fMatch= match;
-		fSentence= sentence;
-		fDocument= document;
-		fOrigin= origin;
+		fSourceStart = start;
+		fSourceEnd = end;
+		fLineNumber = line;
+		fMessage = message;
+		fWord = word;
+		fMatch = match;
+		fSentence = sentence;
+		fDocument = document;
+		fOrigin = origin;
 	}
+
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getArguments()
 	 */
+	@Override
 	public String[] getArguments() {
 
-		String prefix= ""; //$NON-NLS-1$
-		String postfix= ""; //$NON-NLS-1$
+		String prefix = ""; //$NON-NLS-1$
+		String postfix = ""; //$NON-NLS-1$
 
 		try {
 
-			IRegion line= fDocument.getLineInformationOfOffset(fSourceStart);
-			prefix= fDocument.get(line.getOffset(), fSourceStart - line.getOffset());
-			int postfixStart= fSourceEnd + 1;
-			postfix= fDocument.get(postfixStart, line.getOffset() + line.getLength() - postfixStart);
+			IRegion line = fDocument.getLineInformationOfOffset(fSourceStart);
+			prefix = fDocument.get(line.getOffset(), fSourceStart - line.getOffset());
+			int postfixStart = fSourceEnd + 1;
+			postfix = fDocument.get(postfixStart, line.getOffset() + line.getLength() - postfixStart);
 
 		} catch (BadLocationException exception) {
 			// Do nothing
 		}
-		return new String[] { fWord, prefix, postfix, fSentence ? Boolean.toString(true) : Boolean.toString(false), fMatch ? Boolean.toString(true) : Boolean.toString(false) };
+		return new String[] { fWord, prefix, postfix, fSentence ? Boolean.toString(true) : Boolean.toString(false),
+				fMatch ? Boolean.toString(true) : Boolean.toString(false) };
 	}
 
 	/** The id of the problem */
-	public static final int SPELLING_PROBLEM_ID= 0x80000000;
+	public static final int SPELLING_PROBLEM_ID = 0x80000000;
 
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getID()
 	 */
+	@Override
 	public int getID() {
 		return SPELLING_PROBLEM_ID;
 	}
@@ -114,6 +119,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getMessage()
 	 */
+	@Override
 	public String getMessage() {
 		return fMessage;
 	}
@@ -121,6 +127,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getOriginatingFileName()
 	 */
+	@Override
 	public char[] getOriginatingFileName() {
 		return fOrigin.toCharArray();
 	}
@@ -128,6 +135,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getSourceEnd()
 	 */
+	@Override
 	public int getSourceEnd() {
 		return fSourceEnd;
 	}
@@ -135,6 +143,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getSourceLineNumber()
 	 */
+	@Override
 	public int getSourceLineNumber() {
 		return fLineNumber;
 	}
@@ -142,6 +151,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#getSourceStart()
 	 */
+	@Override
 	public int getSourceStart() {
 		return fSourceStart;
 	}
@@ -149,6 +159,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#isError()
 	 */
+	@Override
 	public boolean isError() {
 		return false;
 	}
@@ -156,6 +167,7 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#isWarning()
 	 */
+	@Override
 	public boolean isWarning() {
 		return true;
 	}
@@ -163,22 +175,25 @@ public class CoreSpellingProblem extends CategorizedProblem {
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#setSourceStart(int)
 	 */
+	@Override
 	public void setSourceStart(int sourceStart) {
-		fSourceStart= sourceStart;
+		fSourceStart = sourceStart;
 	}
 
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#setSourceEnd(int)
 	 */
+	@Override
 	public void setSourceEnd(int sourceEnd) {
-		fSourceEnd= sourceEnd;
+		fSourceEnd = sourceEnd;
 	}
 
 	/*
 	 * @see org.eclipse.jdt.core.compiler.IProblem#setSourceLineNumber(int)
 	 */
+	@Override
 	public void setSourceLineNumber(int lineNumber) {
-		fLineNumber= lineNumber;
+		fLineNumber = lineNumber;
 	}
 
 	/*
