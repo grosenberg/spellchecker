@@ -13,15 +13,14 @@
 	<name>net.certiv.spellchecker :: parent</name>
 	<description>net.certiv.spellchecker parent</description>
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<tycho.version>1.3.0</tycho.version>
 		<java.version>1.8</java.version>
-		<eclipse-repo.url>http://download.eclipse.org/releases/2019-12</eclipse-repo.url>
-		<certiv-repo.url>file:/D:/DevFiles/Eclipse/Tools/Certiv/net.certiv/net.certiv.tools.site/target/repository</certiv-repo.url>
-		<dsl-repo.url>file:/D:/DevFiles/Eclipse/Tools/Dsl/net.certiv.dsl/net.certiv.dsl.site/target/repository</dsl-repo.url>
+		<tycho.version>1.3.0</tycho.version>
+		<eclipse-repo.url>http://download.eclipse.org/releases/2020-03</eclipse-repo.url>
+		<!-- <certiv-repo.url>file:/D:/DevFiles/Eclipse/Tools/Certiv/net.certiv/net.certiv.tools.site/target/repository</certiv-repo.url> 
+			<dsl-repo.url>file:/D:/DevFiles/Eclipse/Tools/Dsl/net.certiv.dsl/net.certiv.dsl.site/target/repository</dsl-repo.url> -->
 	</properties>
 
 	<repositories>
@@ -30,16 +29,11 @@
 			<layout>p2</layout>
 			<url>${eclipse-repo.url}</url>
 		</repository>
-		<repository>
-			<id>certiv</id>
-			<layout>p2</layout>
-			<url>${certiv-repo.url}</url>
-		</repository>
-		<repository>
-			<id>dsl</id>
-			<layout>p2</layout>
-			<url>${dsl-repo.url}</url>
-		</repository>
+
+		<!-- <repository> <id>certiv</id> <layout>p2</layout> <url>${certiv-repo.url}</url> 
+			</repository> <repository> <id>dsl</id> <layout>p2</layout> <url>${dsl-repo.url}</url> 
+			</repository> -->
+
 	</repositories>
 
 	<build>
@@ -99,18 +93,18 @@
 				</configuration>
 			</plugin>
 
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-packaging-plugin</artifactId>
-					<version>${tycho.version}</version>
-					<configuration>
-						<format>yyyyMMdd-HHmm</format>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<format>yyyyMMdd-HHmm</format>
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
 					</archive>
-					</configuration>
-				</plugin>
-			</plugins>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<profiles>
