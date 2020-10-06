@@ -18,10 +18,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.core.runtime.content.IContentTypeManager;
-
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
-
 import org.eclipse.ui.texteditor.spelling.ISpellingEngine;
 import org.eclipse.ui.texteditor.spelling.ISpellingProblemCollector;
 import org.eclipse.ui.texteditor.spelling.SpellingContext;
@@ -30,9 +28,8 @@ import org.eclipse.ui.texteditor.spelling.SpellingContext;
  * Default spelling engine.
  * <p>
  * Internally this spelling engine uses a different spelling engine depending on the
- * {@linkplain IContentType content type}. Currently this engine supports the text, Java and Java
- * properties file content types.
- * 
+ * {@linkplain IContentType content type}. Currently this engine supports the text, Java
+ * and Java properties file content types.
  *
  * @since 3.1
  */
@@ -43,7 +40,7 @@ public class DefaultSpellingEngine implements ISpellingEngine {
 			.getContentType(IContentTypeManager.CT_TEXT);
 
 	/** Available spelling engines by content type */
-	private Map<IContentType, SpellingEngine> fEngines = new HashMap<IContentType, SpellingEngine>();
+	private Map<IContentType, SpellingEngine> fEngines = new HashMap<>();
 
 	/**
 	 * Initialize concrete engines.
@@ -53,6 +50,7 @@ public class DefaultSpellingEngine implements ISpellingEngine {
 			fEngines.put(TEXT_CONTENT_TYPE, new TextSpellingEngine(Activator.getDefault().getPreferenceStore()));
 	}
 
+	@Override
 	public void check(IDocument document, IRegion[] regions, SpellingContext context,
 			ISpellingProblemCollector collector, IProgressMonitor monitor) {
 		ISpellingEngine engine = getEngine(context.getContentType());
@@ -61,12 +59,12 @@ public class DefaultSpellingEngine implements ISpellingEngine {
 	}
 
 	/**
-	 * Returns a spelling engine for the given content type or {@code null} if none could be
-	 * found.
+	 * Returns a spelling engine for the given content type or {@code null} if none could
+	 * be found.
 	 *
 	 * @param contentType the content type
-	 * @return a spelling engine for the given content type or {@code null} if none could be
-	 *         found
+	 * @return a spelling engine for the given content type or {@code null} if none could
+	 *             be found
 	 */
 	private ISpellingEngine getEngine(IContentType contentType) {
 		if (contentType == null) return null;

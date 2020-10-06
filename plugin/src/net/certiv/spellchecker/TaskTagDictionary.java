@@ -35,21 +35,25 @@ public class TaskTagDictionary extends AbstractSpellDictionary implements IPrope
 	}
 
 	/*
-	 * @see org.eclipse.jdt.ui.text.spelling.engine.AbstractSpellDictionary#load(java.net.URL)
+	 * @see
+	 * org.eclipse.jdt.ui.text.spelling.engine.AbstractSpellDictionary#load(java.net.URL)
 	 */
 	@Override
 	protected synchronized boolean load(final URL url) {
-//		Activator.getJavaCorePluginPreferences().addPropertyChangeListener(this);
+		// Activator.getJavaCorePluginPreferences().addPropertyChangeListener(this);
 		return updateTaskTags();
 	}
 
 	/*
-	 * @see org.eclipse.core.runtime.Preferences.IPropertyChangeListener#propertyChange(org.eclipse.core.runtime.Preferences.PropertyChangeEvent)
+	 * @see
+	 * org.eclipse.core.runtime.Preferences.IPropertyChangeListener#propertyChange(org.
+	 * eclipse.core.runtime.Preferences.PropertyChangeEvent)
 	 */
+	@Override
 	public void propertyChange(final PropertyChangeEvent event) {
 
-//		if (JavaCore.COMPILER_TASK_TAGS.equals(event.getProperty()))
-//			updateTaskTags();
+		// if (JavaCore.COMPILER_TASK_TAGS.equals(event.getProperty()))
+		// updateTaskTags();
 	}
 
 	/*
@@ -57,33 +61,36 @@ public class TaskTagDictionary extends AbstractSpellDictionary implements IPrope
 	 */
 	@Override
 	public synchronized void unload() {
-//		JavaPlugin.getJavaCorePluginPreferences().removePropertyChangeListener(this);
+		// JavaPlugin.getJavaCorePluginPreferences().removePropertyChangeListener(this);
 		super.unload();
 	}
 
 	/**
 	 * Handles the compiler task tags property change event.
 	 *
-	 * @return  {@code true} if the task tags got updated
+	 * @return {@code true} if the task tags got updated
 	 */
 	protected boolean updateTaskTags() {
 		return true;
-//		final String tags= JavaCore.getOption(JavaCore.COMPILER_TASK_TAGS);
-//		if (tags != null) {
-//
-//			unload();
-//
-//			final StringTokenizer tokenizer= new StringTokenizer(tags, ","); //$NON-NLS-1$
-//			while (tokenizer.hasMoreTokens())
-//				hashWord(tokenizer.nextToken());
-//
-//			return true;
-//		}
-//		return false;
+		// final String tags= JavaCore.getOption(JavaCore.COMPILER_TASK_TAGS);
+		// if (tags != null) {
+		//
+		// unload();
+		//
+		// final StringTokenizer tokenizer= new StringTokenizer(tags, ","); //$NON-NLS-1$
+		// while (tokenizer.hasMoreTokens())
+		// hashWord(tokenizer.nextToken());
+		//
+		// return true;
+		// }
+		// return false;
 	}
 
 	/*
-	 * @see net.certiv.spellchecker.engine.AbstractSpellDictionary#stripNonLetters(java.lang.String)
+	 * @see
+	 * net.certiv.spellchecker.engine.AbstractSpellDictionary#stripNonLetters(java.lang.
+	 * String)
+	 *
 	 * @since 3.3
 	 */
 	@Override

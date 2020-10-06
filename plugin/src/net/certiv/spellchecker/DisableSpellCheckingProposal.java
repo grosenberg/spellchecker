@@ -24,7 +24,6 @@ import net.certiv.spellchecker.etc.IProposalRelevance;
 import net.certiv.spellchecker.etc.JavaPluginImages;
 import net.certiv.spellchecker.messages.JavaUIMessages;
 
-
 /**
  * Proposal to disable spell checking.
  *
@@ -41,27 +40,35 @@ public class DisableSpellCheckingProposal implements IJavaCompletionProposal {
 	 * @param context the invocation context
 	 */
 	public DisableSpellCheckingProposal(IQuickAssistInvocationContext context) {
-		fContext= context;
+		fContext = context;
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#apply(org.eclipse.jface.text.IDocument)
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#apply(org.eclipse.jface.
+	 * text.IDocument)
 	 */
+	@Override
 	public final void apply(final IDocument document) {
-		IPreferenceStore store= EditorsUI.getPreferenceStore();
+		IPreferenceStore store = EditorsUI.getPreferenceStore();
 		store.setValue(SpellingService.PREFERENCE_SPELLING_ENABLED, false);
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getAdditionalProposalInfo()
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#getAdditionalProposalInfo(
+	 * )
 	 */
+	@Override
 	public String getAdditionalProposalInfo() {
 		return JavaUIMessages.Spelling_disable_info;
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getContextInformation()
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#getContextInformation()
 	 */
+	@Override
 	public final IContextInformation getContextInformation() {
 		return null;
 	}
@@ -69,6 +76,7 @@ public class DisableSpellCheckingProposal implements IJavaCompletionProposal {
 	/*
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getDisplayString()
 	 */
+	@Override
 	public String getDisplayString() {
 		return JavaUIMessages.Spelling_disable_label;
 	}
@@ -76,19 +84,25 @@ public class DisableSpellCheckingProposal implements IJavaCompletionProposal {
 	/*
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getImage()
 	 */
+	@Override
 	public Image getImage() {
 		return JavaPluginImages.get(JavaPluginImages.IMG_OBJS_NLS_NEVER_TRANSLATE);
 	}
+
 	/*
 	 * @see org.eclipse.jdt.ui.text.java.IJavaCompletionProposal#getRelevance()
 	 */
+	@Override
 	public final int getRelevance() {
 		return IProposalRelevance.DISABLE_SPELL_CHECKING;
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getSelection(org.eclipse.jface.text.IDocument)
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#getSelection(org.eclipse.
+	 * jface.text.IDocument)
 	 */
+	@Override
 	public final Point getSelection(final IDocument document) {
 		return new Point(fContext.getOffset(), fContext.getLength());
 	}

@@ -18,7 +18,6 @@ import org.eclipse.ui.forms.widgets.SharedScrolledComposite;
 
 import net.certiv.spellchecker.Activator;
 
-
 public class ScrolledPageContent extends SharedScrolledComposite {
 
 	private FormToolkit fToolkit;
@@ -32,16 +31,15 @@ public class ScrolledPageContent extends SharedScrolledComposite {
 
 		setFont(parent.getFont());
 
-		fToolkit= Activator.getDefault().getDialogsFormToolkit();
+		fToolkit = Activator.getDefault().getDialogsFormToolkit();
 
 		setExpandHorizontal(true);
 		setExpandVertical(true);
 
-		Composite body= new Composite(this, SWT.NONE);
+		Composite body = new Composite(this, SWT.NONE);
 		body.setFont(parent.getFont());
 		setContent(body);
 	}
-
 
 	public void adaptChild(Control childControl) {
 		fToolkit.adapt(childControl, true, true);

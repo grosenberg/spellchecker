@@ -13,23 +13,24 @@ package net.certiv.spellchecker.engine;
 
 import java.util.Locale;
 
+import net.certiv.spellchecker.etc.PreferenceConstants;
+
 /**
  * Interface for a spell check engine.
  * <p>
  * This engine can be configured with multiple dictionaries.
- * 
  *
  * @since 3.0
  */
 public interface ISpellCheckEngine {
 
 	/**
-	 * Returns a spell checker configured with the global dictionaries and the locale dictionary that
-	 * correspond to the current {@linkplain PreferenceConstants#SPELLING_LOCALE locale preference}.
+	 * Returns a spell checker configured with the global dictionaries and the locale
+	 * dictionary that correspond to the current
+	 * {@linkplain PreferenceConstants#SPELLING_LOCALE locale preference}.
 	 * <p>
-	 * <strong>Note:</strong> Changes to the spelling engine dictionaries are not propagated to this
-	 * spell checker.
-	 * 
+	 * <strong>Note:</strong> Changes to the spelling engine dictionaries are not
+	 * propagated to this spell checker.
 	 *
 	 * @return a configured instance of the spell checker or {@code null} if none
 	 * @throws IllegalStateException if called after being shut down
@@ -62,7 +63,6 @@ public interface ISpellCheckEngine {
 	 * Shuts down this spell check engine and its associated components.
 	 * <p>
 	 * Further calls to this engine result in exceptions.
-	 * 
 	 */
 	void shutdown();
 
@@ -72,7 +72,6 @@ public interface ISpellCheckEngine {
 	 * {@code registerDictionary(ISpellDictionary)}.
 	 * <p>
 	 * If the dictionary was not registered before, nothing happens.
-	 * 
 	 *
 	 * @param dictionary the dictionary to unregister
 	 */

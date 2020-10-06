@@ -37,7 +37,7 @@ import net.certiv.spellchecker.messages.Messages;
  */
 public class AddWordProposal implements IJavaCompletionProposal {
 
-	private static final String PREF_KEY_DO_NOT_ASK= "do_not_ask_to_install_user_dictionary"; //$NON-NLS-1$
+	private static final String PREF_KEY_DO_NOT_ASK = "do_not_ask_to_install_user_dictionary"; //$NON-NLS-1$
 
 	/** The invocation context */
 	private final IQuickAssistInvocationContext fContext;
@@ -45,42 +45,39 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	/** The word to add */
 	private final String fWord;
 
-
 	/**
 	 * Creates a new add word proposal
 	 *
-	 * @param word
-	 *                   The word to add
-	 * @param context
-	 *                   The invocation context
+	 * @param word The word to add
+	 * @param context The invocation context
 	 */
 	public AddWordProposal(final String word, final IQuickAssistInvocationContext context) {
-		fContext= context;
-		fWord= word;
+		fContext = context;
+		fWord = word;
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#apply(org.eclipse.jface.text.IDocument)
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#apply(org.eclipse.jface.
+	 * text.IDocument)
 	 */
+	@Override
 	public final void apply(final IDocument document) {
 
-		final ISpellCheckEngine engine= SpellCheckEngine.getInstance();
-		final ISpellChecker checker= engine.getSpellChecker();
+		final ISpellCheckEngine engine = SpellCheckEngine.getInstance();
+		final ISpellChecker checker = engine.getSpellChecker();
 
-		if (checker == null)
-			return;
+		if (checker == null) return;
 
 		if (!checker.acceptsWords()) {
 			final Shell shell;
 			if (fContext != null && fContext.getSourceViewer() != null)
-				shell= fContext.getSourceViewer().getTextWidget().getShell();
-			else
-				shell= Activator.getActiveWorkbenchShell();
+				shell = fContext.getSourceViewer().getTextWidget().getShell();
+			else shell = Activator.getActiveWorkbenchShell();
 
-			if (!canAskToConfigure() || !askUserToConfigureUserDictionary(shell))
-				return;
+			if (!canAskToConfigure() || !askUserToConfigureUserDictionary(shell)) return;
 
-			String[] preferencePageIds= new String[] { "org.eclipse.ui.editors.preferencePages.Spelling" }; //$NON-NLS-1$
+			String[] preferencePageIds = new String[] { "org.eclipse.ui.editors.preferencePages.Spelling" }; //$NON-NLS-1$
 			PreferencesUtil.createPreferenceDialogOn(shell, preferencePageIds[0], preferencePageIds, null).open();
 		}
 
@@ -99,14 +96,9 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	 * @since 3.3
 	 */
 	private boolean askUserToConfigureUserDictionary(Shell shell) {
-		MessageDialogWithToggle toggleDialog= MessageDialogWithToggle.openYesNoQuestion(
-				shell,
-				JavaUIMessages.Spelling_add_askToConfigure_title,
-				JavaUIMessages.Spelling_add_askToConfigure_question,
-				JavaUIMessages.Spelling_add_askToConfigure_ignoreMessage,
-				false,
-				null,
-				null);
+		MessageDialogWithToggle toggleDialog = MessageDialogWithToggle.openYesNoQuestion(shell,
+				JavaUIMessages.Spelling_add_askToConfigure_title, JavaUIMessages.Spelling_add_askToConfigure_question,
+				JavaUIMessages.Spelling_add_askToConfigure_ignoreMessage, false, null, null);
 
 		Activator.getDefault().getPreferenceStore().setValue(PREF_KEY_DO_NOT_ASK, toggleDialog.getToggleState());
 
@@ -114,8 +106,7 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	}
 
 	/**
-	 * Tells whether this proposal can ask to
-	 * configure a user dictionary.
+	 * Tells whether this proposal can ask to configure a user dictionary.
 	 *
 	 * @return {@code true} if it can ask the user
 	 */
@@ -124,15 +115,21 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getAdditionalProposalInfo()
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#getAdditionalProposalInfo(
+	 * )
 	 */
+	@Override
 	public String getAdditionalProposalInfo() {
-		return Messages.format(JavaUIMessages.Spelling_add_info, new String[] { WordCorrectionProposal.getHtmlRepresentation(fWord)});
+		return Messages.format(JavaUIMessages.Spelling_add_info,
+				new String[] { WordCorrectionProposal.getHtmlRepresentation(fWord) });
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getContextInformation()
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#getContextInformation()
 	 */
+	@Override
 	public final IContextInformation getContextInformation() {
 		return null;
 	}
@@ -140,6 +137,7 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	/*
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getDisplayString()
 	 */
+	@Override
 	public String getDisplayString() {
 		return Messages.format(JavaUIMessages.Spelling_add_label, new String[] { fWord });
 	}
@@ -147,6 +145,7 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	/*
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getImage()
 	 */
+	@Override
 	public Image getImage() {
 		return JavaPluginImages.get(JavaPluginImages.IMG_CORRECTION_ADD);
 	}
@@ -154,13 +153,17 @@ public class AddWordProposal implements IJavaCompletionProposal {
 	/*
 	 * @see org.eclipse.jdt.ui.text.java.IJavaCompletionProposal#getRelevance()
 	 */
+	@Override
 	public int getRelevance() {
 		return IProposalRelevance.ADD_WORD;
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getSelection(org.eclipse.jface.text.IDocument)
+	 * @see
+	 * org.eclipse.jface.text.contentassist.ICompletionProposal#getSelection(org.eclipse.
+	 * jface.text.IDocument)
 	 */
+	@Override
 	public final Point getSelection(final IDocument document) {
 		return new Point(fContext.getOffset(), fContext.getLength());
 	}

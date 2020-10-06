@@ -1,21 +1,20 @@
 package net.certiv.spellchecker.etc;
 
-
 /**
  * Description of a Java problem, as detected by the compiler or some of the underlying
- * technology reusing the compiler.
- * A problem provides access to:
+ * technology reusing the compiler. A problem provides access to:
  * <ul>
- * <li> its location (originating source file name, source position, line number), </li>
- * <li> its message description and a predicate to check its severity (warning or error). </li>
- * <li> its ID : a number identifying the very nature of this problem. All possible IDs are listed
- * as constants on this interface. </li>
+ * <li>its location (originating source file name, source position, line number),</li>
+ * <li>its message description and a predicate to check its severity (warning or error).
+ * </li>
+ * <li>its ID : a number identifying the very nature of this problem. All possible IDs are
+ * listed as constants on this interface.</li>
  * </ul>
- *
- * Note: the compiler produces IProblems internally, which are turned into markers by the JavaBuilder
- * so as to persist problem descriptions. This explains why there is no API allowing to reach IProblem detected
- * when compiling. However, the Java problem markers carry equivalent information to IProblem, in particular
- * their ID (attribute "id") is set to one of the IDs defined on this interface.
+ * Note: the compiler produces IProblems internally, which are turned into markers by the
+ * JavaBuilder so as to persist problem descriptions. This explains why there is no API
+ * allowing to reach IProblem detected when compiling. However, the Java problem markers
+ * carry equivalent information to IProblem, in particular their ID (attribute "id") is
+ * set to one of the IDs defined on this interface.
  *
  * @since 2.0
  * @noimplement This interface is not intended to be implemented by clients.
@@ -23,103 +22,101 @@ package net.certiv.spellchecker.etc;
  */
 public interface IProblem {
 
-/**
- * Answer back the original arguments recorded into the problem.
- * @return the original arguments recorded into the problem
- */
-String[] getArguments();
-
-/**
- * Returns the problem id
- *
- * @return the problem id
- */
-int getID();
-
-/**
- * Answer a localized, human-readable message string which describes the problem.
- *
- * @return a localized, human-readable message string which describes the problem
- */
-String getMessage();
-
-/**
- * Answer the file name in which the problem was found.
- *
- * @return the file name in which the problem was found
- */
-char[] getOriginatingFileName();
-
-/**
- * Answer the end position of the problem (inclusive), or -1 if unknown.
- *
- * @return the end position of the problem (inclusive), or -1 if unknown
- */
-int getSourceEnd();
-
-/**
- * Answer the line number in source where the problem begins.
- *
- * @return the line number in source where the problem begins
- */
-int getSourceLineNumber();
-
-/**
- * Answer the start position of the problem (inclusive), or -1 if unknown.
- *
- * @return the start position of the problem (inclusive), or -1 if unknown
- */
-int getSourceStart();
-
-/**
- * Checks the severity to see if the Error bit is set.
- *
- * @return true if the Error bit is set for the severity, false otherwise
- */
-boolean isError();
-
-/**
- * Checks the severity to see if the Error bit is not set.
- *
- * @return true if the Error bit is not set for the severity, false otherwise
- */
-boolean isWarning();
-
-/**
- * Set the end position of the problem (inclusive), or -1 if unknown.
- * Used for shifting problem positions.
- *
- * @param sourceEnd the given end position
- */
-void setSourceEnd(int sourceEnd);
-
-/**
- * Set the line number in source where the problem begins.
- *
- * @param lineNumber the given line number
- */
-void setSourceLineNumber(int lineNumber);
-
-/**
- * Set the start position of the problem (inclusive), or -1 if unknown.
- * Used for shifting problem positions.
- *
- * @param sourceStart the given start position
- */
-void setSourceStart(int sourceStart);
-
+	/**
+	 * Answer back the original arguments recorded into the problem.
+	 *
+	 * @return the original arguments recorded into the problem
+	 */
+	String[] getArguments();
 
 	/**
-	 * Problem Categories
-	 * The high bits of a problem ID contains information about the category of a problem.
-	 * For example, (problemID & TypeRelated) != 0, indicates that this problem is type related.
+	 * Returns the problem id
 	 *
-	 * A problem category can help to implement custom problem filters. Indeed, when numerous problems
-	 * are listed, focusing on import related problems first might be relevant.
+	 * @return the problem id
+	 */
+	int getID();
+
+	/**
+	 * Answer a localized, human-readable message string which describes the problem.
 	 *
-	 * When a problem is tagged as Internal, it means that no change other than a local source code change
-	 * can  fix the corresponding problem. A type related problem could be addressed by changing the type
-	 * involved in it.
+	 * @return a localized, human-readable message string which describes the problem
+	 */
+	String getMessage();
+
+	/**
+	 * Answer the file name in which the problem was found.
+	 *
+	 * @return the file name in which the problem was found
+	 */
+	char[] getOriginatingFileName();
+
+	/**
+	 * Answer the end position of the problem (inclusive), or -1 if unknown.
+	 *
+	 * @return the end position of the problem (inclusive), or -1 if unknown
+	 */
+	int getSourceEnd();
+
+	/**
+	 * Answer the line number in source where the problem begins.
+	 *
+	 * @return the line number in source where the problem begins
+	 */
+	int getSourceLineNumber();
+
+	/**
+	 * Answer the start position of the problem (inclusive), or -1 if unknown.
+	 *
+	 * @return the start position of the problem (inclusive), or -1 if unknown
+	 */
+	int getSourceStart();
+
+	/**
+	 * Checks the severity to see if the Error bit is set.
+	 *
+	 * @return true if the Error bit is set for the severity, false otherwise
+	 */
+	boolean isError();
+
+	/**
+	 * Checks the severity to see if the Error bit is not set.
+	 *
+	 * @return true if the Error bit is not set for the severity, false otherwise
+	 */
+	boolean isWarning();
+
+	/**
+	 * Set the end position of the problem (inclusive), or -1 if unknown. Used for
+	 * shifting problem positions.
+	 *
+	 * @param sourceEnd the given end position
+	 */
+	void setSourceEnd(int sourceEnd);
+
+	/**
+	 * Set the line number in source where the problem begins.
+	 *
+	 * @param lineNumber the given line number
+	 */
+	void setSourceLineNumber(int lineNumber);
+
+	/**
+	 * Set the start position of the problem (inclusive), or -1 if unknown. Used for
+	 * shifting problem positions.
+	 *
+	 * @param sourceStart the given start position
+	 */
+	void setSourceStart(int sourceStart);
+
+	/**
+	 * Problem Categories The high bits of a problem ID contains information about the
+	 * category of a problem. For example, (problemID & TypeRelated) != 0, indicates that
+	 * this problem is type related. A problem category can help to implement custom
+	 * problem filters. Indeed, when numerous problems are listed, focusing on import
+	 * related problems first might be relevant. When a problem is tagged as Internal, it
+	 * means that no change other than a local source code change can fix the
+	 * corresponding problem. A type related problem could be addressed by changing the
+	 * type involved in it.
 	 */
 	int TypeRelated = 0x01000000;
 	int FieldRelated = 0x02000000;
@@ -137,13 +134,14 @@ void setSourceStart(int sourceStart);
 	int IgnoreCategoriesMask = 0xFFFFFF;
 
 	/**
-	 * Below are listed all available problem IDs. Note that this list could be augmented in the future,
-	 * as new features are added to the Java core implementation.
+	 * Below are listed all available problem IDs. Note that this list could be augmented
+	 * in the future, as new features are added to the Java core implementation.
 	 */
 
 	/**
-	 * ID reserved for referencing an internal error inside the JavaCore implementation which
-	 * may be surfaced as a problem associated with the compilation unit which caused it to occur.
+	 * ID reserved for referencing an internal error inside the JavaCore implementation
+	 * which may be surfaced as a problem associated with the compilation unit which
+	 * caused it to occur.
 	 */
 	int Unclassified = 0;
 
@@ -192,8 +190,11 @@ void setSourceStart(int sourceStart);
 	int UndefinedName = Internal + FieldRelated + 50;
 	int UninitializedLocalVariable = Internal + 51;
 	int VariableTypeCannotBeVoid = Internal + 52;
-	/** @deprecated - problem is no longer generated, use {@link #CannotAllocateVoidArray} instead */
-	int VariableTypeCannotBeVoidArray = Internal + 53;
+	/**
+	 * @deprecated - problem is no longer generated, use {@link #CannotAllocateVoidArray}
+	 *                 instead
+	 */
+	@Deprecated int VariableTypeCannotBeVoidArray = Internal + 53;
 	int CannotAllocateVoidArray = Internal + 54;
 	// local variables
 	int RedefinedLocal = Internal + 55;
@@ -273,7 +274,7 @@ void setSourceStart(int sourceStart);
 	int ParameterMismatch = MethodRelated + 115;
 	int NoMessageSendOnArrayType = MethodRelated + 116;
 	/** @since 2.1 */
-    int NonStaticAccessToStaticMethod = Internal + MethodRelated + 117;
+	int NonStaticAccessToStaticMethod = Internal + MethodRelated + 117;
 	/** @since 2.1 */
 	int UnusedPrivateMethod = Internal + MethodRelated + 118;
 	/** @since 3.0 */
@@ -350,7 +351,7 @@ void setSourceStart(int sourceStart);
 	int InvalidBreak = Internal + 172;
 	int InvalidContinue = Internal + 173;
 	int UndefinedLabel = Internal + 174;
-	//synchronized
+	// synchronized
 	int InvalidTypeToSynchronized = Internal + 175;
 	int InvalidNullToSynchronized = Internal + 176;
 	// throw
@@ -364,9 +365,11 @@ void setSourceStart(int sourceStart);
 	int SuperfluousSemicolon = Internal + 180;
 	/** @since 3.0 */
 	int UnnecessaryCast = Internal + TypeRelated + 181;
-	/** @deprecated - no longer generated, use {@link #UnnecessaryCast} instead
-	 *   @since 3.0 */
-	int UnnecessaryArgumentCast = Internal + TypeRelated + 182;
+	/**
+	 * @deprecated - no longer generated, use {@link #UnnecessaryCast} instead
+	 * @since 3.0
+	 */
+	@Deprecated int UnnecessaryArgumentCast = Internal + TypeRelated + 182;
 	/** @since 3.0 */
 	int UnnecessaryInstanceof = Internal + TypeRelated + 183;
 	/** @since 3.0 */
@@ -391,7 +394,7 @@ void setSourceStart(int sourceStart);
 	/** @since 3.2 */
 	int FallthroughCase = Internal + 194;
 
-	//inherited name hides enclosing name (sort of ambiguous)
+	// inherited name hides enclosing name (sort of ambiguous)
 	int InheritedMethodHidesEnclosingName = MethodRelated + 195;
 	int InheritedFieldHidesEnclosingName = FieldRelated + 196;
 	int InheritedTypeHidesEnclosingName = TypeRelated + 197;
@@ -406,7 +409,7 @@ void setSourceStart(int sourceStart);
 	int StaticMethodRequested = Internal + MethodRelated + 201;
 	int IllegalDimension = Internal + 202;
 	/** @deprecated - problem is no longer generated */
-	int InvalidTypeExpression = Internal + 203;
+	@Deprecated int InvalidTypeExpression = Internal + 203;
 	int ParsingError = Syntax + Internal + 204;
 	int ParsingErrorNoSuggestion = Syntax + Internal + 205;
 	int InvalidUnaryExpression = Syntax + Internal + 206;
@@ -435,27 +438,27 @@ void setSourceStart(int sourceStart);
 	/** @since 3.0 */
 	int ParsingErrorInsertTokenAfter = Syntax + Internal + 231;
 	/** @since 3.0 */
-    int ParsingErrorDeleteToken = Syntax + Internal + 232;
-    /** @since 3.0 */
-    int ParsingErrorDeleteTokens = Syntax + Internal + 233;
-    /** @since 3.0 */
-    int ParsingErrorMergeTokens = Syntax + Internal + 234;
-    /** @since 3.0 */
-    int ParsingErrorInvalidToken = Syntax + Internal + 235;
-    /** @since 3.0 */
-    int ParsingErrorMisplacedConstruct = Syntax + Internal + 236;
-    /** @since 3.0 */
-    int ParsingErrorReplaceTokens = Syntax + Internal + 237;
-    /** @since 3.0 */
-    int ParsingErrorNoSuggestionForTokens = Syntax + Internal + 238;
-    /** @since 3.0 */
-    int ParsingErrorUnexpectedEOF = Syntax + Internal + 239;
-    /** @since 3.0 */
-    int ParsingErrorInsertToComplete = Syntax + Internal + 240;
-    /** @since 3.0 */
-    int ParsingErrorInsertToCompleteScope = Syntax + Internal + 241;
-    /** @since 3.0 */
-    int ParsingErrorInsertToCompletePhrase = Syntax + Internal + 242;
+	int ParsingErrorDeleteToken = Syntax + Internal + 232;
+	/** @since 3.0 */
+	int ParsingErrorDeleteTokens = Syntax + Internal + 233;
+	/** @since 3.0 */
+	int ParsingErrorMergeTokens = Syntax + Internal + 234;
+	/** @since 3.0 */
+	int ParsingErrorInvalidToken = Syntax + Internal + 235;
+	/** @since 3.0 */
+	int ParsingErrorMisplacedConstruct = Syntax + Internal + 236;
+	/** @since 3.0 */
+	int ParsingErrorReplaceTokens = Syntax + Internal + 237;
+	/** @since 3.0 */
+	int ParsingErrorNoSuggestionForTokens = Syntax + Internal + 238;
+	/** @since 3.0 */
+	int ParsingErrorUnexpectedEOF = Syntax + Internal + 239;
+	/** @since 3.0 */
+	int ParsingErrorInsertToComplete = Syntax + Internal + 240;
+	/** @since 3.0 */
+	int ParsingErrorInsertToCompleteScope = Syntax + Internal + 241;
+	/** @since 3.0 */
+	int ParsingErrorInsertToCompletePhrase = Syntax + Internal + 242;
 
 	// scanner errors
 	int EndOfSource = Syntax + Internal + 250;
@@ -521,7 +524,7 @@ void setSourceStart(int sourceStart);
 	int IsClassPathCorrect = TypeRelated + 324;
 	int PublicClassMustMatchFileName = TypeRelated + 325;
 	/** @deprecated - problem is no longer generated */
-	int MustSpecifyPackage = Internal + 326;
+	@Deprecated int MustSpecifyPackage = Internal + 326;
 	int HierarchyHasProblems = TypeRelated + 327;
 	int PackageIsNotExpectedPackage = Internal + 328;
 	/** @since 2.1 */
@@ -554,10 +557,16 @@ void setSourceStart(int sourceStart);
 	int IllegalAbstractModifierCombinationForMethod = MethodRelated + 362;
 	int AbstractMethodInAbstractClass = MethodRelated + 363;
 	int ArgumentTypeCannotBeVoid = MethodRelated + 364;
-	/** @deprecated - problem is no longer generated, use {@link #CannotAllocateVoidArray} instead */
-	int ArgumentTypeCannotBeVoidArray = MethodRelated + 365;
-	/** @deprecated - problem is no longer generated, use {@link #CannotAllocateVoidArray} instead */
-	int ReturnTypeCannotBeVoidArray = MethodRelated + 366;
+	/**
+	 * @deprecated - problem is no longer generated, use {@link #CannotAllocateVoidArray}
+	 *                 instead
+	 */
+	@Deprecated int ArgumentTypeCannotBeVoidArray = MethodRelated + 365;
+	/**
+	 * @deprecated - problem is no longer generated, use {@link #CannotAllocateVoidArray}
+	 *                 instead
+	 */
+	@Deprecated int ReturnTypeCannotBeVoidArray = MethodRelated + 366;
 	int NativeMethodsCannotBeStrictfp = MethodRelated + 367;
 	int DuplicateModifierForArgument = MethodRelated + 368;
 	/** @since 3.5 */
@@ -570,17 +579,32 @@ void setSourceStart(int sourceStart);
 	int UnusedImport = ImportRelated + 388;
 
 	/** @since 3.1 */
-	int InvalidTypeForStaticImport =  ImportRelated + 391;
+	int InvalidTypeForStaticImport = ImportRelated + 391;
 
 	// local variable related problems
 	int DuplicateModifierForVariable = MethodRelated + 395;
 	int IllegalModifierForVariable = MethodRelated + 396;
-	/** @deprecated - problem is no longer generated, use {@link #RedundantNullCheckOnNonNullLocalVariable} instead */
-	int LocalVariableCannotBeNull = Internal + 397; // since 3.3: semantics are LocalVariableRedundantCheckOnNonNull
-	/** @deprecated - problem is no longer generated, use {@link #NullLocalVariableReference}, {@link #RedundantNullCheckOnNullLocalVariable} or {@link #RedundantLocalVariableNullAssignment} instead */
-	int LocalVariableCanOnlyBeNull = Internal + 398; // since 3.3: split with LocalVariableRedundantCheckOnNull depending on context
-	/** @deprecated - problem is no longer generated, use {@link #PotentialNullLocalVariableReference} instead */
-	int LocalVariableMayBeNull = Internal + 399;
+	/**
+	 * @deprecated - problem is no longer generated, use
+	 *                 {@link #RedundantNullCheckOnNonNullLocalVariable} instead
+	 */
+	@Deprecated int LocalVariableCannotBeNull = Internal + 397; // since 3.3: semantics
+																 // are
+																 // LocalVariableRedundantCheckOnNonNull
+	/**
+	 * @deprecated - problem is no longer generated, use
+	 *                 {@link #NullLocalVariableReference},
+	 *                 {@link #RedundantNullCheckOnNullLocalVariable} or
+	 *                 {@link #RedundantLocalVariableNullAssignment} instead
+	 */
+	@Deprecated int LocalVariableCanOnlyBeNull = Internal + 398; // since 3.3: split with
+																 // LocalVariableRedundantCheckOnNull
+																 // depending on context
+	/**
+	 * @deprecated - problem is no longer generated, use
+	 *                 {@link #PotentialNullLocalVariableReference} instead
+	 */
+	@Deprecated int LocalVariableMayBeNull = Internal + 399;
 
 	// method verifier problems
 	int AbstractMethodMustBeImplemented = MethodRelated + 400;
@@ -605,7 +629,7 @@ void setSourceStart(int sourceStart);
 	/** @since 3.3 */
 	int OverridingMethodWithoutSuperInvocation = MethodRelated + 416;
 	/** @since 3.5 */
-	int MissingSynchronizedModifierInInheritedMethod= MethodRelated + 417;
+	int MissingSynchronizedModifierInInheritedMethod = MethodRelated + 417;
 	/** @since 3.5 */
 	int AbstractMethodMustBeImplementedOverConcreteMethod = MethodRelated + 418;
 	/** @since 3.5 */
@@ -616,7 +640,7 @@ void setSourceStart(int sourceStart);
 	int CodeSnippetMissingMethod = Internal + 421;
 	int CannotUseSuperInCodeSnippet = Internal + 422;
 
-	//constant pool
+	// constant pool
 	int TooManyConstantsInConstantPool = Internal + 430;
 	/** @since 2.1 */
 	int TooManyBytesForStringConstant = Internal + 431;
@@ -672,28 +696,33 @@ void setSourceStart(int sourceStart);
 	 * Javadoc comments
 	 */
 	/**
-	 * Problem signaled on an invalid URL reference.
-	 * Valid syntax example: @see "http://www.eclipse.org/"
+	 * Problem signaled on an invalid URL reference. Valid syntax example: @see
+	 * "http://www.eclipse.org/"
+	 *
 	 * @since 3.4
 	 */
 	int JavadocInvalidSeeUrlReference = Javadoc + Internal + 462;
 	/**
 	 * Problem warned on missing tag description.
+	 *
 	 * @since 3.4
 	 */
 	int JavadocMissingTagDescription = Javadoc + Internal + 463;
 	/**
 	 * Problem warned on duplicated tag.
+	 *
 	 * @since 3.3
 	 */
 	int JavadocDuplicateTag = Javadoc + Internal + 464;
 	/**
 	 * Problem signaled on an hidden reference due to a too low visibility level.
+	 *
 	 * @since 3.3
 	 */
 	int JavadocHiddenReference = Javadoc + Internal + 465;
 	/**
 	 * Problem signaled on an invalid qualification for member type reference.
+	 *
 	 * @since 3.3
 	 */
 	int JavadocInvalidMemberTypeQualification = Javadoc + Internal + 466;
@@ -732,8 +761,10 @@ void setSourceStart(int sourceStart);
 	/** @since 3.0 */
 	int JavadocInvalidSeeReference = Javadoc + Internal + 483;
 	/**
-	 * Problem signaled on an invalid URL reference that does not conform to the href syntax.
-	 * Valid syntax example: @see <a href="http://www.eclipse.org/">Eclipse Home Page</a>
+	 * Problem signaled on an invalid URL reference that does not conform to the href
+	 * syntax. Valid syntax example: @see <a href="http://www.eclipse.org/">Eclipse Home
+	 * Page</a>
+	 *
 	 * @since 3.0
 	 */
 	int JavadocInvalidSeeHref = Javadoc + Internal + 484;
@@ -842,15 +873,15 @@ void setSourceStart(int sourceStart);
 	int DuplicateMethodErasure = TypeRelated + 527;
 	/** @since 3.1 */
 	int ReferenceToForwardTypeVariable = TypeRelated + 528;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int BoundMustBeAnInterface = TypeRelated + 529;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int UnsafeRawConstructorInvocation = TypeRelated + 530;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int UnsafeRawMethodInvocation = TypeRelated + 531;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int UnsafeTypeConversion = TypeRelated + 532;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int InvalidTypeVariableExceptionType = TypeRelated + 533;
 	/** @since 3.1 */
 	int InvalidParameterizedExceptionType = TypeRelated + 534;
@@ -912,9 +943,9 @@ void setSourceStart(int sourceStart);
 	int MissingArgumentsForParameterizedMemberType = TypeRelated + 562;
 	/** @since 3.1 */
 	int StaticMemberOfParameterizedType = TypeRelated + 563;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int BoundHasConflictingArguments = TypeRelated + 564;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int DuplicateParameterizedMethods = MethodRelated + 565;
 	/** @since 3.1 */
 	int IllegalQualifiedParameterizedTypeAllocation = TypeRelated + 566;
@@ -922,9 +953,9 @@ void setSourceStart(int sourceStart);
 	int DuplicateBounds = TypeRelated + 567;
 	/** @since 3.1 */
 	int BoundCannotBeArray = TypeRelated + 568;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int UnsafeRawGenericConstructorInvocation = TypeRelated + 569;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int UnsafeRawGenericMethodInvocation = TypeRelated + 570;
 	/** @since 3.1 */
 	int TypeParameterHidingType = TypeRelated + 571;
@@ -940,10 +971,10 @@ void setSourceStart(int sourceStart);
 	int TypeHidingTypeParameterFromType = TypeRelated + 576;
 	/** @since 3.3 */
 	int TypeHidingTypeParameterFromMethod = TypeRelated + 577;
-    /** @since 3.3 */
-    int InvalidUsageOfWildcard = Syntax + Internal + 578;
-    /** @since 3.4 */
-    int UnusedTypeArgumentsForMethodInvocation = MethodRelated + 579;
+	/** @since 3.3 */
+	int InvalidUsageOfWildcard = Syntax + Internal + 578;
+	/** @since 3.4 */
+	int UnusedTypeArgumentsForMethodInvocation = MethodRelated + 579;
 
 	/**
 	 * Foreach
@@ -952,7 +983,7 @@ void setSourceStart(int sourceStart);
 	int IncompatibleTypesInForeach = TypeRelated + 580;
 	/** @since 3.1 */
 	int InvalidTypeForCollection = Internal + 581;
-	/** @since 3.6*/
+	/** @since 3.6 */
 	int InvalidTypeForCollectionTarget14 = Internal + 582;
 
 	/** @since 3.7.1 */
@@ -967,43 +998,43 @@ void setSourceStart(int sourceStart);
 	 * 1.5 Syntax errors (when source level < 1.5)
 	 */
 	/** @since 3.1 */
-    int InvalidUsageOfTypeParameters = Syntax + Internal + 590;
-    /** @since 3.1 */
-    int InvalidUsageOfStaticImports = Syntax + Internal + 591;
-    /** @since 3.1 */
-    int InvalidUsageOfForeachStatements = Syntax + Internal + 592;
-    /** @since 3.1 */
-    int InvalidUsageOfTypeArguments = Syntax + Internal + 593;
-    /** @since 3.1 */
-    int InvalidUsageOfEnumDeclarations = Syntax + Internal + 594;
-    /** @since 3.1 */
-    int InvalidUsageOfVarargs = Syntax + Internal + 595;
-    /** @since 3.1 */
-    int InvalidUsageOfAnnotations = Syntax + Internal + 596;
-    /** @since 3.1 */
-    int InvalidUsageOfAnnotationDeclarations = Syntax + Internal + 597;
-    /** @since 3.4 */
-    int InvalidUsageOfTypeParametersForAnnotationDeclaration = Syntax + Internal + 598;
-    /** @since 3.4 */
-    int InvalidUsageOfTypeParametersForEnumDeclaration = Syntax + Internal + 599;
-    /**
-     * Annotation
-     */
+	int InvalidUsageOfTypeParameters = Syntax + Internal + 590;
+	/** @since 3.1 */
+	int InvalidUsageOfStaticImports = Syntax + Internal + 591;
+	/** @since 3.1 */
+	int InvalidUsageOfForeachStatements = Syntax + Internal + 592;
+	/** @since 3.1 */
+	int InvalidUsageOfTypeArguments = Syntax + Internal + 593;
+	/** @since 3.1 */
+	int InvalidUsageOfEnumDeclarations = Syntax + Internal + 594;
+	/** @since 3.1 */
+	int InvalidUsageOfVarargs = Syntax + Internal + 595;
+	/** @since 3.1 */
+	int InvalidUsageOfAnnotations = Syntax + Internal + 596;
+	/** @since 3.1 */
+	int InvalidUsageOfAnnotationDeclarations = Syntax + Internal + 597;
+	/** @since 3.4 */
+	int InvalidUsageOfTypeParametersForAnnotationDeclaration = Syntax + Internal + 598;
+	/** @since 3.4 */
+	int InvalidUsageOfTypeParametersForEnumDeclaration = Syntax + Internal + 599;
+	/**
+	 * Annotation
+	 */
 	/** @since 3.1 */
 	int IllegalModifierForAnnotationMethod = MethodRelated + 600;
-    /** @since 3.1 */
-    int IllegalExtendedDimensions = MethodRelated + 601;
-    /** @since 3.1 */
+	/** @since 3.1 */
+	int IllegalExtendedDimensions = MethodRelated + 601;
+	/** @since 3.1 */
 	int InvalidFileNameForPackageAnnotations = Syntax + Internal + 602;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int IllegalModifierForAnnotationType = TypeRelated + 603;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int IllegalModifierForAnnotationMemberType = TypeRelated + 604;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int InvalidAnnotationMemberType = TypeRelated + 605;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int AnnotationCircularitySelfReference = TypeRelated + 606;
-    /** @since 3.1 */
+	/** @since 3.1 */
 	int AnnotationCircularity = TypeRelated + 607;
 	/** @since 3.1 */
 	int DuplicateAnnotation = TypeRelated + 608;
@@ -1017,9 +1048,11 @@ void setSourceStart(int sourceStart);
 	int AnnotationValueMustBeClassLiteral = Internal + 612;
 	/** @since 3.1 */
 	int AnnotationValueMustBeConstant = Internal + 613;
-	/** @deprecated - problem is no longer generated (code is legite)
-	 *   @since 3.1 */
-	int AnnotationFieldNeedConstantInitialization = Internal + 614;
+	/**
+	 * @deprecated - problem is no longer generated (code is legite)
+	 * @since 3.1
+	 */
+	@Deprecated int AnnotationFieldNeedConstantInitialization = Internal + 614;
 	/** @since 3.1 */
 	int IllegalModifierForAnnotationField = Internal + 615;
 	/** @since 3.1 */
@@ -1068,8 +1101,8 @@ void setSourceStart(int sourceStart);
 	/**
 	 * More problems in generics
 	 */
-    /** @since 3.4 */
-    int UnusedTypeArgumentsForConstructorInvocation = MethodRelated + 660;
+	/** @since 3.4 */
+	int UnusedTypeArgumentsForConstructorInvocation = MethodRelated + 660;
 	/** @since 3.9 */
 	int UnusedTypeParameter = TypeRelated + 661;
 	/** @since 3.9 */
@@ -1115,9 +1148,11 @@ void setSourceStart(int sourceStart);
 	int IllegalModifierForEnum = TypeRelated + 750;
 	/** @since 3.1 */
 	int IllegalModifierForEnumConstant = FieldRelated + 751;
-	/** @deprecated - problem could not be reported, enums cannot be local takes precedence
-	 *   @since 3.1 */
-	int IllegalModifierForLocalEnum = TypeRelated + 752;
+	/**
+	 * @deprecated - problem could not be reported, enums cannot be local takes precedence
+	 * @since 3.1
+	 */
+	@Deprecated int IllegalModifierForLocalEnum = TypeRelated + 752;
 	/** @since 3.1 */
 	int IllegalModifierForMemberEnum = TypeRelated + 753;
 	/** @since 3.1 */
@@ -1136,7 +1171,8 @@ void setSourceStart(int sourceStart);
 	int IllegalModifierForEnumConstructor = MethodRelated + 760;
 	/** @since 3.1 */
 	int MissingEnumConstantCase = FieldRelated + 761;
-	/** @since 3.2 */ // TODO need to fix 3.1.1 contribution (inline this constant on client side)
+	/** @since 3.2 */ // TODO need to fix 3.1.1 contribution (inline this constant on
+						 // client side)
 	int EnumStaticFieldInInInitializerContext = FieldRelated + 762;
 	/** @since 3.4 */
 	int EnumConstantMustImplementAbstractMethod = MethodRelated + 763;
@@ -1216,7 +1252,7 @@ void setSourceStart(int sourceStart);
 	/** @since 3.7.1 */
 	int AutoManagedResourceNotBelow17 = Syntax + Internal + 874;
 	/** @since 3.7.1 */
-	int MultiCatchNotBelow17 =  Syntax + Internal + 875;
+	int MultiCatchNotBelow17 = Syntax + Internal + 875;
 	/** @since 3.7.1 */
 	int PolymorphicMethodNotBelow17 = MethodRelated + 876;
 	/** @since 3.7.1 */
@@ -1230,9 +1266,9 @@ void setSourceStart(int sourceStart);
 	/** @since 3.7.1 */
 	int SwitchOnStringsNotBelow17 = TypeRelated + 881;	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=348492
 	/** @since 3.7.1 */
-	int UnhandledExceptionOnAutoClose =  TypeRelated + 882;
+	int UnhandledExceptionOnAutoClose = TypeRelated + 882;
 	/** @since 3.7.1 */
-	int DiamondNotBelow17 =  TypeRelated + 883;
+	int DiamondNotBelow17 = TypeRelated + 883;
 	/** @since 3.7.1 */
 	int RedundantSpecificationOfTypeArguments = TypeRelated + 884;
 	/** @since 3.8 */
@@ -1281,7 +1317,8 @@ void setSourceStart(int sourceStart);
 	/** @since 3.9 */
 	int NullableFieldReference = FieldRelated + 924;
 	/** @since 3.8 */
-	int RedundantNullDefaultAnnotation = Internal + 925; // shouldn't actually occur any more after bug 366063
+	int RedundantNullDefaultAnnotation = Internal + 925; // shouldn't actually occur any
+														 // more after bug 366063
 	/** @since 3.8 */
 	int RedundantNullDefaultAnnotationPackage = Internal + 926;
 	/** @since 3.8 */

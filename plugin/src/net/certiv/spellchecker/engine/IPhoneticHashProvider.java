@@ -21,16 +21,15 @@ public interface IPhoneticHashProvider {
 	/**
 	 * Returns the phonetic hash for the word.
 	 *
-	 * @param word
-	 *                  The word to get the phonetic hash for
+	 * @param word The word to get the phonetic hash for
 	 * @return The phonetic hash for the word
 	 */
-	public String getHash(String word);
+	String getHash(String word);
 
 	/**
 	 * Returns an array of characters to compute possible mutations.
 	 *
 	 * @return Array of possible mutator characters
 	 */
-	public char[] getMutators();
+	char[] getMutators();
 }

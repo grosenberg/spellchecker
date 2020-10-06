@@ -27,28 +27,25 @@ public class RankedWordProposal implements Comparable<RankedWordProposal> {
 	/**
 	 * Creates a new ranked word proposal.
 	 *
-	 * @param text
-	 *                   The text of this proposal
-	 * @param rank
-	 *                   The rank of this proposal
+	 * @param text The text of this proposal
+	 * @param rank The rank of this proposal
 	 */
 	public RankedWordProposal(final String text, final int rank) {
-		fText= text;
-		fRank= rank;
+		fText = text;
+		fRank = rank;
 	}
 
 	/*
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
+	@Override
 	public final int compareTo(RankedWordProposal word) {
 
-		final int rank= word.getRank();
+		final int rank = word.getRank();
 
-		if (fRank < rank)
-			return -1;
+		if (fRank < rank) return -1;
 
-		if (fRank > rank)
-			return 1;
+		if (fRank > rank) return 1;
 
 		return 0;
 	}
@@ -59,8 +56,7 @@ public class RankedWordProposal implements Comparable<RankedWordProposal> {
 	@Override
 	public final boolean equals(Object object) {
 
-		if (object instanceof RankedWordProposal)
-			return object.hashCode() == hashCode();
+		if (object instanceof RankedWordProposal) return object.hashCode() == hashCode();
 
 		return false;
 	}
@@ -94,10 +90,9 @@ public class RankedWordProposal implements Comparable<RankedWordProposal> {
 	/**
 	 * Sets the rank of the word.
 	 *
-	 * @param rank
-	 *                   The rank to set
+	 * @param rank The rank to set
 	 */
 	public final void setRank(final int rank) {
-		fRank= rank;
+		fRank = rank;
 	}
 }

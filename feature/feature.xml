@@ -2,7 +2,7 @@
 <feature
       id="net.certiv.spellchecker.feature"
       label="Spellchecker"
-      version="3.3.3.qualifier"
+      version="3.4.0.qualifier"
       provider-name="Certiv Analytics">
 
    <description url="http://www.certiv.net/">

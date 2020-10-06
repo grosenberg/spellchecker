@@ -81,7 +81,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	 *
 	 * @param word The word to check
 	 * @return {@code true} iff this word only contains upper-case letters, {@code false}
-	 *         otherwise
+	 *             otherwise
 	 */
 	protected static boolean isUpperCase(final String word) {
 
@@ -100,15 +100,16 @@ public class DefaultSpellChecker implements ISpellChecker {
 	 */
 	protected static boolean isUrl(final String word) {
 
-		for (int index = 0; index < URL_PREFIXES.length; index++) {
+		for (String element : URL_PREFIXES) {
 
-			if (word.startsWith(URL_PREFIXES[index])) return true;
+			if (word.startsWith(element)) return true;
 		}
 		return false;
 	}
 
 	/**
-	 * The dictionaries to use for spell checking. Synchronized to avoid concurrent modifications.
+	 * The dictionaries to use for spell checking. Synchronized to avoid concurrent
+	 * modifications.
 	 */
 	private final Set<ISpellDictionary> fDictionaries = Collections.synchronizedSet(new HashSet<ISpellDictionary>());
 
@@ -125,7 +126,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 
 	/**
 	 * The locale of this checker.
-	 * 
+	 *
 	 * @since 3.3
 	 */
 	private Locale fLocale;
@@ -145,9 +146,11 @@ public class DefaultSpellChecker implements ISpellChecker {
 	}
 
 	/*
-	 * @see org.eclipse.spelling.done.ISpellChecker#addDictionary(org.eclipse.spelling.done.
+	 * @see
+	 * org.eclipse.spelling.done.ISpellChecker#addDictionary(org.eclipse.spelling.done.
 	 * ISpellDictionary)
 	 */
+	@Override
 	public final void addDictionary(final ISpellDictionary dictionary) {
 		// synchronizing is necessary as this is a write access
 		fDictionaries.add(dictionary);
@@ -156,13 +159,14 @@ public class DefaultSpellChecker implements ISpellChecker {
 	/*
 	 * @see org.eclipse.jdt.ui.text.spelling.engine.ISpellChecker#acceptsWords()
 	 */
+	@Override
 	public boolean acceptsWords() {
 		// synchronizing might not be needed here since acceptWords is
 		// a read-only access and only called in the same thread as
 		// the modifying methods add/checkWord (?)
 		Set<ISpellDictionary> copy;
 		synchronized (fDictionaries) {
-			copy = new HashSet<ISpellDictionary>(fDictionaries);
+			copy = new HashSet<>(fDictionaries);
 		}
 
 		ISpellDictionary dictionary = null;
@@ -177,33 +181,36 @@ public class DefaultSpellChecker implements ISpellChecker {
 	/*
 	 * @see net.certiv.spellchecker.engine.ISpellChecker#addWord(java.lang.String)
 	 */
+	@Override
 	public void addWord(final String word) {
 		// synchronizing is necessary as this is a write access
 		Set<ISpellDictionary> copy;
 		synchronized (fDictionaries) {
-			copy = new HashSet<ISpellDictionary>(fDictionaries);
+			copy = new HashSet<>(fDictionaries);
 		}
 
 		final String addable = word.toLowerCase();
-		for (final Iterator<ISpellDictionary> iterator = copy.iterator(); iterator.hasNext();) {
-			ISpellDictionary dictionary = iterator.next();
+		for (ISpellDictionary dictionary : copy) {
 			if (dictionary.acceptsWords()) dictionary.addWord(addable);
 		}
 
 	}
 
 	/*
-	 * @see org.eclipse.jdt.ui.text.spelling.engine.ISpellChecker#checkWord(java.lang.String)
+	 * @see
+	 * org.eclipse.jdt.ui.text.spelling.engine.ISpellChecker#checkWord(java.lang.String)
 	 */
+	@Override
 	public final void checkWord(final String word) {
 		// synchronizing is necessary as this is a write access
 		fIgnored.remove(word.toLowerCase());
 	}
 
 	/*
-	 * @see
-	 * org.eclipse.spelling.done.ISpellChecker#execute(org.eclipse.spelling.ISpellCheckTokenizer)
+	 * @see org.eclipse.spelling.done.ISpellChecker#execute(org.eclipse.spelling.
+	 * ISpellCheckTokenizer)
 	 */
+	@Override
 	public void execute(final ISpellEventListener listener, final ISpellCheckIterator iterator) {
 
 		final boolean ignoreDigits = fPreferences.getBoolean(PreferenceConstants.SPELLING_IGNORE_DIGITS);
@@ -242,7 +249,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 						boolean isURL = isUrl(word);
 
 						if (!ignoreMixed && isMixed || !ignoreUpper && isUpper || !ignoreDigits && isDigits
-								|| !ignoreURLS && isURL || !(isMixed || isUpper || isDigits || isURL)) {
+								|| !ignoreURLS && isURL || (!isMixed && !isUpper && !isDigits && !isURL)) {
 							listener.handle(
 									new SpellEvent(this, word, iterator.getBegin(), iterator.getEnd(), starts, false));
 							problemCount++;
@@ -264,6 +271,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	/*
 	 * @see org.eclipse.spelling.done.ISpellChecker#getProposals(java.lang.String,boolean)
 	 */
+	@Override
 	public Set<RankedWordProposal> getProposals(final String word, final boolean sentence) {
 
 		// synchronizing might not be needed here since getProposals is
@@ -271,11 +279,11 @@ public class DefaultSpellChecker implements ISpellChecker {
 		// the modifing methods add/removeDictionary (?)
 		Set<ISpellDictionary> copy;
 		synchronized (fDictionaries) {
-			copy = new HashSet<ISpellDictionary>(fDictionaries);
+			copy = new HashSet<>(fDictionaries);
 		}
 
 		ISpellDictionary dictionary = null;
-		final HashSet<RankedWordProposal> proposals = new HashSet<RankedWordProposal>();
+		final HashSet<RankedWordProposal> proposals = new HashSet<>();
 
 		for (final Iterator<ISpellDictionary> iterator = copy.iterator(); iterator.hasNext();) {
 
@@ -288,6 +296,7 @@ public class DefaultSpellChecker implements ISpellChecker {
 	/*
 	 * @see net.certiv.spellchecker.engine.ISpellChecker#ignoreWord(java.lang.String)
 	 */
+	@Override
 	public final void ignoreWord(final String word) {
 		// synchronizing is necessary as this is a write access
 		fIgnored.add(word.toLowerCase());
@@ -296,11 +305,12 @@ public class DefaultSpellChecker implements ISpellChecker {
 	/*
 	 * @see net.certiv.spellchecker.engine.ISpellChecker#isCorrect(java.lang.String)
 	 */
+	@Override
 	public final boolean isCorrect(final String word) {
 		// synchronizing is necessary as this is called from execute
 		Set<ISpellDictionary> copy;
 		synchronized (fDictionaries) {
-			copy = new HashSet<ISpellDictionary>(fDictionaries);
+			copy = new HashSet<>(fDictionaries);
 		}
 
 		if (fIgnored.contains(word.toLowerCase())) return true;
@@ -315,9 +325,11 @@ public class DefaultSpellChecker implements ISpellChecker {
 	}
 
 	/*
-	 * @see org.eclipse.spelling.done.ISpellChecker#removeDictionary(org.eclipse.spelling.done.
+	 * @see
+	 * org.eclipse.spelling.done.ISpellChecker#removeDictionary(org.eclipse.spelling.done.
 	 * ISpellDictionary)
 	 */
+	@Override
 	public final void removeDictionary(final ISpellDictionary dictionary) {
 		// synchronizing is necessary as this is a write access
 		fDictionaries.remove(dictionary);
@@ -325,9 +337,10 @@ public class DefaultSpellChecker implements ISpellChecker {
 
 	/*
 	 * @see net.certiv.spellchecker.engine.ISpellChecker#getLocale()
-	 * 
+	 *
 	 * @since 3.3
 	 */
+	@Override
 	public Locale getLocale() {
 		return fLocale;
 	}

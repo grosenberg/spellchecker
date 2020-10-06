@@ -18,10 +18,6 @@ import org.eclipse.swt.accessibility.AccessibleAdapter;
 import org.eclipse.swt.accessibility.AccessibleControlAdapter;
 import org.eclipse.swt.accessibility.AccessibleControlEvent;
 import org.eclipse.swt.accessibility.AccessibleEvent;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseMoveListener;
@@ -65,14 +61,12 @@ public class FilterTextControl {
 			Text testText = null;
 			try {
 				testText = new Text(composite, SWT.SEARCH | SWT.ICON_CANCEL);
-				fgUseNativeSearchField = new Boolean((testText.getStyle() & SWT.ICON_CANCEL) != 0);
+				fgUseNativeSearchField = (testText.getStyle() & SWT.ICON_CANCEL) != 0;
 			} finally {
-				if (testText != null) {
-					testText.dispose();
-				}
+				if (testText != null) testText.dispose();
 			}
 		}
-		return fgUseNativeSearchField.booleanValue();
+		return fgUseNativeSearchField;
 	}
 
 	/**
@@ -146,12 +140,7 @@ public class FilterTextControl {
 		if ((fTextControl.getStyle() & SWT.ICON_CANCEL) != 0) gridData.horizontalSpan = 2;
 		fTextControl.setLayoutData(gridData);
 
-		fTextControl.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				updateClearButtonVisibility(!(fTextControl.getText().length() == 0));
-			}
-		});
+		fTextControl.addModifyListener(e -> updateClearButtonVisibility((fTextControl.getText().length() != 0)));
 	}
 
 	/**
@@ -225,13 +214,10 @@ public class FilterTextControl {
 				@Override
 				public void mouseHover(MouseEvent e) {}
 			});
-			clearButton.addDisposeListener(new DisposeListener() {
-				@Override
-				public void widgetDisposed(DisposeEvent e) {
-					inactiveImage.dispose();
-					activeImage.dispose();
-					pressedImage.dispose();
-				}
+			clearButton.addDisposeListener(e -> {
+				inactiveImage.dispose();
+				activeImage.dispose();
+				pressedImage.dispose();
 			});
 			clearButton.getAccessible().addAccessibleListener(new AccessibleAdapter() {
 				@Override
@@ -245,7 +231,7 @@ public class FilterTextControl {
 					e.detail = ACC.ROLE_PUSHBUTTON;
 				}
 			});
-			this.fClearButton = clearButton;
+			fClearButton = clearButton;
 		}
 	}
 
@@ -260,8 +246,8 @@ public class FilterTextControl {
 	}
 
 	/**
-	 * Convenience method to return the text of the filter control. If the text
-	 * widget is not created, then null is returned.
+	 * Convenience method to return the text of the filter control. If the text widget is
+	 * not created, then null is returned.
 	 *
 	 * @return String in the text, or null if the text does not exist
 	 */

@@ -18,10 +18,9 @@ package net.certiv.spellchecker.preferences;
 
 import org.eclipse.osgi.util.NLS;
 
-
 public final class PreferencesMessages extends NLS {
 
-	private static final String BUNDLE_NAME= "net.certiv.spellchecker.preferences.PreferencesMessages";//$NON-NLS-1$
+	private static final String BUNDLE_NAME = "net.certiv.spellchecker.preferences.PreferencesMessages";//$NON-NLS-1$
 
 	private PreferencesMessages() {
 		// Do not instantiate

@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
-
 import org.eclipse.ui.texteditor.spelling.ISpellingProblemCollector;
 
 import net.certiv.spellchecker.engine.ISpellChecker;
@@ -35,10 +34,10 @@ public class TextSpellingEngine extends SpellingEngine {
 	protected void check(IDocument document, IRegion[] regions, ISpellChecker checker,
 			ISpellingProblemCollector collector, IProgressMonitor monitor) {
 		SpellEventListener listener = new SpellEventListener(collector, document);
-		for (int i = 0; i < regions.length; i++) {
+		for (IRegion region : regions) {
 			if (monitor != null && monitor.isCanceled()) return;
 			if (listener.isProblemsThresholdReached()) return;
-			checker.execute(listener, new SpellCheckIterator(document, regions[i], checker.getLocale()));
+			checker.execute(listener, new SpellCheckIterator(document, region, checker.getLocale()));
 		}
 	}
 }

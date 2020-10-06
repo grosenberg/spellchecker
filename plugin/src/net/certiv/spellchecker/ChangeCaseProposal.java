@@ -33,8 +33,11 @@ public class ChangeCaseProposal extends WordCorrectionProposal {
 	 * @param context The invocation context for this proposal
 	 * @param locale The locale to use for the case change
 	 */
-	public ChangeCaseProposal(final String[] arguments, final int offset, final int length, final IQuickAssistInvocationContext context, final Locale locale) {
-		super(Character.isLowerCase(arguments[0].charAt(0)) ? Character.toUpperCase(arguments[0].charAt(0)) + arguments[0].substring(1) : arguments[0], arguments, offset, length, context, Integer.MAX_VALUE);
+	public ChangeCaseProposal(final String[] arguments, final int offset, final int length,
+			final IQuickAssistInvocationContext context, final Locale locale) {
+		super(Character.isLowerCase(arguments[0].charAt(0))
+				? Character.toUpperCase(arguments[0].charAt(0)) + arguments[0].substring(1)
+				: arguments[0], arguments, offset, length, context, Integer.MAX_VALUE);
 	}
 
 	/*

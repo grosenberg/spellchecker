@@ -13,12 +13,11 @@ package net.certiv.spellchecker.etc;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
- * A completion proposal with a relevance value.
- * The relevance value is used to sort the completion proposals. Proposals with higher relevance
- * should be listed before proposals with lower relevance.
+ * A completion proposal with a relevance value. The relevance value is used to sort the
+ * completion proposals. Proposals with higher relevance should be listed before proposals
+ * with lower relevance.
  * <p>
  * This interface can be implemented by clients.
- * 
  *
  * @see org.eclipse.jface.text.contentassist.ICompletionProposal
  * @since 2.1
@@ -28,8 +27,8 @@ public interface IJavaCompletionProposal extends ICompletionProposal {
 	/**
 	 * Returns the relevance of this completion proposal.
 	 * <p>
-	 * The relevance is used to determine if this proposal is more
-	 * relevant than another proposal.
+	 * The relevance is used to determine if this proposal is more relevant than another
+	 * proposal.
 	 *
 	 * @return the relevance of this completion proposal in the range of [0, 1000]
 	 */

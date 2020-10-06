@@ -58,8 +58,8 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 			int prime = 31;
 			if (array == null) return 0;
 			int result = 1;
-			for (int index = 0; index < array.length; index++) {
-				result = prime * result + array[index];
+			for (byte element : array) {
+				result = prime * result + element;
 			}
 			return result;
 		}
@@ -165,12 +165,12 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	}
 
 	/**
-	 * Returns all candidates that have a phonetic hash within a bounded distance to
-	 * the specified word.
+	 * Returns all candidates that have a phonetic hash within a bounded distance to the
+	 * specified word.
 	 *
 	 * @param word The word to find the nearest matches for
-	 * @param sentence {@code true} iff the proposals start a new sentence,
-	 *            {@code false} otherwise
+	 * @param sentence {@code true} iff the proposals start a new sentence, {@code false}
+	 *            otherwise
 	 * @param hashs Array of close hashes to find the matches
 	 * @return Set of ranked words with bounded distance to the specified word
 	 */
@@ -183,9 +183,9 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 		final StringBuffer buffer = new StringBuffer(BUFFER_CAPACITY);
 		final HashSet<RankedWordProposal> result = new HashSet<>(BUCKET_CAPACITY * hashs.size());
 
-		for (int index = 0; index < hashs.size(); index++) {
+		for (String hash2 : hashs) {
 
-			hash = hashs.get(index);
+			hash = hash2;
 
 			final Object candidates = getCandidates(hash);
 			if (candidates == null) continue;
@@ -241,10 +241,10 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	 * distance to the specified word.
 	 *
 	 * @param word The word to find the nearest matches for
-	 * @param sentence {@code true} iff the proposals start a new sentence,
-	 *            {@code false} otherwise
-	 * @param result Set of ranked words with smallest possible distance to the
-	 *            specified word
+	 * @param sentence {@code true} iff the proposals start a new sentence, {@code false}
+	 *            otherwise
+	 * @param result Set of ranked words with smallest possible distance to the specified
+	 *            word
 	 */
 	protected final void getCandidates(final String word, final boolean sentence,
 			final Set<RankedWordProposal> result) {
@@ -275,10 +275,10 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 		final ArrayList<byte[]> candidateList = (ArrayList<byte[]>) candidates;
 		final ArrayList<RankedWordProposal> matches = new ArrayList<>(candidateList.size());
 
-		for (int index = 0; index < candidateList.size(); index++) {
+		for (byte[] element : candidateList) {
 			String candidate;
 			try {
-				candidate = new String(candidateList.get(index), UTF_8);
+				candidate = new String(element, UTF_8);
 			} catch (UnsupportedEncodingException e) {
 				Activator.log(e);
 				return;
@@ -331,8 +331,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	}
 
 	/*
-	 * @see
-	 * net.certiv.spellchecker.engine.ISpellDictionary#getProposals(java.lang.String
+	 * @see net.certiv.spellchecker.engine.ISpellDictionary#getProposals(java.lang.String
 	 * ,boolean)
 	 */
 	@Override
@@ -385,9 +384,9 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 
 		while (true) {
 
-			for (int index = 0; index < mutators.length; index++) {
+			for (char mutator : mutators) {
 
-				characters[offset] = mutators[index];
+				characters[offset] = mutator;
 				neighborhood.add(fHashProvider.getHash(new String(characters)));
 			}
 
@@ -403,9 +402,9 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 		for (int index = 0; index < word.length(); index++) {
 
 			mutated = characters[index];
-			for (int mutator = 0; mutator < mutators.length; mutator++) {
+			for (char mutator2 : mutators) {
 
-				characters[index] = mutators[mutator];
+				characters[index] = mutator2;
 				neighborhood.add(fHashProvider.getHash(new String(characters)));
 			}
 			characters[index] = mutated;
@@ -485,8 +484,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	}
 
 	/*
-	 * @see
-	 * net.certiv.spellchecker.engine.ISpellDictionary#isCorrect(java.lang.String)
+	 * @see net.certiv.spellchecker.engine.ISpellDictionary#isCorrect(java.lang.String)
 	 */
 	@Override
 	public boolean isCorrect(String word) {
@@ -528,8 +526,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 			Activator.log(e);
 			return false;
 		}
-		for (int index = 0; index < candidateList.size(); index++) {
-			byte[] candidate = candidateList.get(index);
+		for (byte[] candidate : candidateList) {
 			if (Arrays.equals(candidate, wordBytes) || Arrays.equals(candidate, lowercaseWordBytes)) {
 				return true;
 			}
@@ -538,8 +535,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	}
 
 	/*
-	 * @see
-	 * net.certiv.spellchecker.engine.ISpellDictionary#setStripNonLetters(boolean)
+	 * @see net.certiv.spellchecker.engine.ISpellDictionary#setStripNonLetters(boolean)
 	 *
 	 * @since 3.3
 	 */
@@ -584,8 +580,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	 * Loads a dictionary word list from disk.
 	 *
 	 * @param url The URL of the word list to load
-	 * @return {@code true} iff the word list could be loaded, {@code false}
-	 *             otherwise
+	 * @return {@code true} iff the word list could be loaded, {@code false} otherwise
 	 */
 	protected synchronized boolean load(final URL url) {
 		if (!fMustLoad) return fLoaded;
@@ -598,7 +593,8 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 				if (stream != null) {
 					String word = null;
 
-					// Setup a reader with a decoder in order to read over malformed input if
+					// Setup a reader with a decoder in order to read over malformed input
+					// if
 					// needed.
 					CharsetDecoder decoder = Charset.forName(getEncoding()).newDecoder();
 					decoder.onMalformedInput(CodingErrorAction.REPORT);
@@ -610,7 +606,8 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 							try {
 								word = reader.readLine();
 							} catch (MalformedInputException ex) {
-								// Tell the decoder to replace malformed input in order to read the line.
+								// Tell the decoder to replace malformed input in order to
+								// read the line.
 								decoder.onMalformedInput(CodingErrorAction.REPLACE);
 								decoder.reset();
 								word = reader.readLine();
@@ -644,7 +641,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 			} catch (IOException exception) {
 				if (line > 0) {
 					String message = Messages.format(JavaUIMessages.AbstractSpellingDictionary_encodingError,
-							new Object[] { new Integer(line), BasicElementLabels.getURLPart(url.toString()) });
+							new Object[] { Integer.valueOf(line), BasicElementLabels.getURLPart(url.toString()) });
 					IStatus status = new Status(IStatus.ERROR, Activator.ID_PLUGIN, IStatus.OK, message, exception);
 					Activator.log(status);
 				} else Activator.log(exception);
@@ -708,8 +705,7 @@ public abstract class AbstractSpellDictionary implements ISpellDictionary {
 	}
 
 	/*
-	 * @see
-	 * net.certiv.spellchecker.engine.ISpellDictionary#addWord(java.lang.String)
+	 * @see net.certiv.spellchecker.engine.ISpellDictionary#addWord(java.lang.String)
 	 */
 	@Override
 	public void addWord(final String word) {

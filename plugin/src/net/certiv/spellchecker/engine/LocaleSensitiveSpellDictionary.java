@@ -14,7 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
-
 /**
  * Platform wide read-only locale sensitive dictionary for spell checking.
  *
@@ -31,14 +30,12 @@ public class LocaleSensitiveSpellDictionary extends AbstractSpellDictionary {
 	/**
 	 * Creates a new locale sensitive spell dictionary.
 	 *
-	 * @param locale
-	 *                   The locale for this dictionary
-	 * @param location
-	 *                   The location of the locale sensitive dictionaries
+	 * @param locale The locale for this dictionary
+	 * @param location The location of the locale sensitive dictionaries
 	 */
 	public LocaleSensitiveSpellDictionary(final Locale locale, final URL location) {
-		fLocation= location;
-		fLocale= locale;
+		fLocation = location;
+		fLocale = locale;
 	}
 
 	/**
@@ -60,6 +57,7 @@ public class LocaleSensitiveSpellDictionary extends AbstractSpellDictionary {
 
 	/*
 	 * @see net.certiv.spellchecker.engine.AbstractSpellDictionary#getInitialSize()
+	 *
 	 * @since 3.6
 	 */
 	@Override

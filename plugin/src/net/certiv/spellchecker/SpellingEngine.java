@@ -25,7 +25,8 @@ import net.certiv.spellchecker.engine.ISpellEventListener;
 import net.certiv.spellchecker.etc.PreferenceConstants;
 
 /**
- * Internal abstract spelling engine, subclasses provide a content-type specific implementation.
+ * Internal abstract spelling engine, subclasses provide a content-type specific
+ * implementation.
  *
  * @since 3.1
  */
@@ -42,7 +43,7 @@ public abstract class SpellingEngine implements ISpellingEngine {
 
 		/**
 		 * The document.
-		 * 
+		 *
 		 * @since 3.3
 		 */
 		private IDocument fDocument;
@@ -62,6 +63,7 @@ public abstract class SpellingEngine implements ISpellingEngine {
 			fProblemsThreshold = store.getInt(PreferenceConstants.SPELLING_PROBLEMS_THRESHOLD);
 		}
 
+		@Override
 		public void handle(ISpellEvent event) {
 			if (isProblemsThresholdReached()) return;
 			fProblemCount++;
@@ -79,6 +81,7 @@ public abstract class SpellingEngine implements ISpellingEngine {
 		SpellingEngine.store = store;
 	}
 
+	@Override
 	public void check(IDocument document, IRegion[] regions, SpellingContext context,
 			ISpellingProblemCollector collector, IProgressMonitor monitor) {
 		if (collector != null) {

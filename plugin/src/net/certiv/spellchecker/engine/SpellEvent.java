@@ -33,10 +33,10 @@ public class SpellEvent implements ISpellEvent {
 	 * @param word The word that causes the event
 	 * @param begin The begin index of the word in the spell checkable medium
 	 * @param end The end index of the word in the spell checkable medium
-	 * @param sentence {@code true} iff the word starts a new sentence,
-	 *            {@code false} otherwise
-	 * @param match {@code true} iff the word was found in the dictionary,
-	 *            {@code false} otherwise
+	 * @param sentence {@code true} iff the word starts a new sentence, {@code false}
+	 *            otherwise
+	 * @param match {@code true} iff the word was found in the dictionary, {@code false}
+	 *            otherwise
 	 */
 	protected SpellEvent(final ISpellChecker checker, final String word, final int begin, final int end,
 			final boolean sentence, final boolean match) {

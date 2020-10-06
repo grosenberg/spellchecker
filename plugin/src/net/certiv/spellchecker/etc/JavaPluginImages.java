@@ -13,7 +13,8 @@ package net.certiv.spellchecker.etc;
 
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
+
+import org.osgi.framework.Bundle;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
@@ -22,7 +23,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
-import org.osgi.framework.Bundle;
 
 import net.certiv.spellchecker.Activator;
 
@@ -804,8 +804,7 @@ public class JavaPluginImages {
 	/**
 	 * Returns the image managed under the given key in this registry.
 	 *
-	 * @param key
-	 *            the image's key
+	 * @param key the image's key
 	 * @return the image managed under the given key
 	 */
 	public static Image get(String key) {
@@ -813,11 +812,10 @@ public class JavaPluginImages {
 	}
 
 	/**
-	 * Returns the image descriptor for the given key in this registry. Might be
-	 * called in a non-UI thread.
+	 * Returns the image descriptor for the given key in this registry. Might be called in
+	 * a non-UI thread.
 	 *
-	 * @param key
-	 *            the image's key
+	 * @param key the image's key
 	 * @return the image descriptor for the given key
 	 */
 	public static ImageDescriptor getDescriptor(String key) {
@@ -828,26 +826,22 @@ public class JavaPluginImages {
 	}
 
 	/**
-	 * Sets the three image descriptors for enabled, disabled, and hovered to an
-	 * action. The actions are retrieved from the *tool16 folders.
+	 * Sets the three image descriptors for enabled, disabled, and hovered to an action.
+	 * The actions are retrieved from the *tool16 folders.
 	 *
-	 * @param action
-	 *            the action
-	 * @param iconName
-	 *            the icon name
+	 * @param action the action
+	 * @param iconName the icon name
 	 */
 	public static void setToolImageDescriptors(IAction action, String iconName) {
 		setImageDescriptors(action, "tool16", iconName); //$NON-NLS-1$
 	}
 
 	/**
-	 * Sets the three image descriptors for enabled, disabled, and hovered to an
-	 * action. The actions are retrieved from the *lcl16 folders.
+	 * Sets the three image descriptors for enabled, disabled, and hovered to an action.
+	 * The actions are retrieved from the *lcl16 folders.
 	 *
-	 * @param action
-	 *            the action
-	 * @param iconName
-	 *            the icon name
+	 * @param action the action
+	 * @param iconName the icon name
 	 */
 	public static void setLocalImageDescriptors(IAction action, String iconName) {
 		setImageDescriptors(action, "lcl16", iconName); //$NON-NLS-1$
@@ -859,8 +853,7 @@ public class JavaPluginImages {
 	/* package */ static ImageRegistry getImageRegistry() {
 		if (fgImageRegistry == null) {
 			fgImageRegistry = new ImageRegistry();
-			for (Iterator<String> iter = fgAvoidSWTErrorMap.keySet().iterator(); iter.hasNext();) {
-				String key = iter.next();
+			for (String key : fgAvoidSWTErrorMap.keySet()) {
 				fgImageRegistry.put(key, fgAvoidSWTErrorMap.get(key));
 			}
 			fgAvoidSWTErrorMap = null;
@@ -873,8 +866,7 @@ public class JavaPluginImages {
 
 	private static void setImageDescriptors(IAction action, String type, String relPath) {
 		ImageDescriptor id = create("d" + type, relPath, false); //$NON-NLS-1$
-		if (id != null)
-			action.setDisabledImageDescriptor(id);
+		if (id != null) action.setDisabledImageDescriptor(id);
 
 		/*
 		 * id= create("c" + type, relPath, false); //$NON-NLS-1$ if (id != null)
@@ -894,7 +886,7 @@ public class JavaPluginImages {
 		ImageDescriptor result = create(prefix, name, true);
 
 		if (fgAvoidSWTErrorMap == null) {
-			fgAvoidSWTErrorMap = new HashMap<String, ImageDescriptor>();
+			fgAvoidSWTErrorMap = new HashMap<>();
 		}
 		fgAvoidSWTErrorMap.put(key, result);
 		if (fgImageRegistry != null) {
@@ -904,10 +896,10 @@ public class JavaPluginImages {
 	}
 
 	/*
-	 * Creates an image descriptor for the given prefix and name in the JDT UI
-	 * bundle. The path can contain variables like $NL$. If no image could be found,
-	 * {@code useMissingImageDescriptor} decides if either the 'missing image
-	 * descriptor' is returned or {@code null}. or {@code null}.
+	 * Creates an image descriptor for the given prefix and name in the JDT UI bundle. The
+	 * path can contain variables like $NL$. If no image could be found, {@code
+	 * useMissingImageDescriptor} decides if either the 'missing image descriptor' is
+	 * returned or {@code null}. or {@code null}.
 	 */
 	private static ImageDescriptor create(String prefix, String name, boolean useMissingImageDescriptor) {
 		IPath path = ICONS_PATH.append(prefix).append(name);
@@ -935,10 +927,10 @@ public class JavaPluginImages {
 	// }
 
 	/*
-	 * Creates an image descriptor for the given path in a bundle. The path can
-	 * contain variables like $NL$. If no image could be found,
-	 * {@code useMissingImageDescriptor} decides if either the 'missing image
-	 * descriptor' is returned or {@code null}. Added for 3.1.1.
+	 * Creates an image descriptor for the given path in a bundle. The path can contain
+	 * variables like $NL$. If no image could be found, {@code useMissingImageDescriptor}
+	 * decides if either the 'missing image descriptor' is returned or {@code null}. Added
+	 * for 3.1.1.
 	 */
 	public static ImageDescriptor createImageDescriptor(Bundle bundle, IPath path, boolean useMissingImageDescriptor) {
 		URL url = FileLocator.find(bundle, path, null);

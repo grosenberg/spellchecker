@@ -18,7 +18,7 @@ import org.eclipse.osgi.util.NLS;
 
 public final class JavaUIMessages extends NLS {
 
-	private static final String BUNDLE_NAME= "net.certiv.spellchecker.messages.JavaUIMessages";//$NON-NLS-1$
+	private static final String BUNDLE_NAME = "net.certiv.spellchecker.messages.JavaUIMessages";//$NON-NLS-1$
 
 	private JavaUIMessages() {
 		// Do not instantiate
@@ -51,7 +51,6 @@ public final class JavaUIMessages extends NLS {
 	public static String PackageSelectionDialog_progress_findEmpty;
 	public static String PackageSelectionDialog_progress_search;
 
-
 	public static String TypeInfoViewer_job_label;
 	public static String TypeInfoViewer_job_error;
 	public static String TypeInfoViewer_job_cancel;
@@ -79,14 +78,16 @@ public final class JavaUIMessages extends NLS {
 
 	/**
 	 * DO NOT REMOVE, used in a product.
+	 *
 	 * @deprecated As of 3.6
 	 */
-	public static String TypeSelectionDialog_lowerLabel;
+	@Deprecated public static String TypeSelectionDialog_lowerLabel;
 	/**
 	 * DO NOT REMOVE, used in a product.
+	 *
 	 * @deprecated As of 3.6
 	 */
-	public static String TypeSelectionDialog_upperLabel;
+	@Deprecated public static String TypeSelectionDialog_upperLabel;
 
 	public static String ExceptionDialog_seeErrorLogMessage;
 

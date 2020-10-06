@@ -14,7 +14,6 @@ import java.net.URL;
 
 import net.certiv.spellchecker.engine.AbstractSpellDictionary;
 
-
 /**
  * Dictionary for Javadoc tags.
  *
@@ -36,34 +35,37 @@ public class JavaDocTagDictionary extends AbstractSpellDictionary implements IJa
 	@Override
 	public boolean isCorrect(final String word) {
 
-		if (word.charAt(0) == JAVADOC_TAG_PREFIX)
-			return super.isCorrect(word);
+		if (word.charAt(0) == JAVADOC_TAG_PREFIX) return super.isCorrect(word);
 
 		return false;
 	}
 
 	/*
-	 * @see org.eclipse.jdt.ui.text.spelling.engine.AbstractSpellDictionary#load(java.net.URL)
+	 * @see
+	 * org.eclipse.jdt.ui.text.spelling.engine.AbstractSpellDictionary#load(java.net.URL)
 	 */
 	@Override
 	protected synchronized boolean load(final URL url) {
 
 		unload();
 
-		for (int index= 0; index < JAVADOC_LINK_TAGS.length; index++)
-			hashWord(JAVADOC_LINK_TAGS[index]);
+		for (String element : JAVADOC_LINK_TAGS)
+			hashWord(element);
 
-		for (int index= 0; index < JAVADOC_ROOT_TAGS.length; index++)
-			hashWord(JAVADOC_ROOT_TAGS[index]);
+		for (String element : JAVADOC_ROOT_TAGS)
+			hashWord(element);
 
-		for (int index= 0; index < JAVADOC_PARAM_TAGS.length; index++)
-			hashWord(JAVADOC_PARAM_TAGS[index]);
+		for (String element : JAVADOC_PARAM_TAGS)
+			hashWord(element);
 
 		return true;
 	}
 
 	/*
-	 * @see net.certiv.spellchecker.engine.AbstractSpellDictionary#stripNonLetters(java.lang.String)
+	 * @see
+	 * net.certiv.spellchecker.engine.AbstractSpellDictionary#stripNonLetters(java.lang.
+	 * String)
+	 *
 	 * @since 3.3
 	 */
 	@Override

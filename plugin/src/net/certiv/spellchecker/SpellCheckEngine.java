@@ -25,13 +25,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.core.variables.IStringVariableManager;
-import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.variables.IStringVariableManager;
+import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.texteditor.spelling.SpellingService;
 
 import net.certiv.spellchecker.engine.DefaultSpellChecker;
@@ -41,8 +42,6 @@ import net.certiv.spellchecker.engine.ISpellDictionary;
 import net.certiv.spellchecker.engine.LocaleSensitiveSpellDictionary;
 import net.certiv.spellchecker.engine.PersistentSpellDictionary;
 import net.certiv.spellchecker.etc.PreferenceConstants;
-
-import org.eclipse.ui.editors.text.EditorsUI;
 
 /**
  * Spell check engine for Java source spell checking.
@@ -65,7 +64,8 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 	private static Set<Locale> fgLocalesWithInstalledDictionaries;
 
 	/**
-	 * Returns the locales for which this spell check engine has dictionaries in certain location.
+	 * Returns the locales for which this spell check engine has dictionaries in certain
+	 * location.
 	 *
 	 * @param location dictionaries location
 	 * @return The available locales for this engine
@@ -83,7 +83,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 			return Collections.emptySet();
 		}
 
-		Set<Locale> localesWithInstalledDictionaries = new HashSet<Locale>();
+		Set<Locale> localesWithInstalledDictionaries = new HashSet<>();
 		int fileNameCount = fileNames.length;
 		for (int i = 0; i < fileNameCount; i++) {
 			String fileName = fileNames[i];
@@ -91,11 +91,9 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 			if (localeEnd > 1) {
 				String localeName = fileName.substring(0, localeEnd);
 				int languageEnd = localeName.indexOf('_');
-				if (languageEnd == -1)
-					localesWithInstalledDictionaries.add(new Locale(localeName));
-				else if (languageEnd == 2 && localeName.length() == 5)
-					localesWithInstalledDictionaries
-							.add(new Locale(localeName.substring(0, 2), localeName.substring(3)));
+				if (languageEnd == -1) localesWithInstalledDictionaries.add(new Locale(localeName));
+				else if (languageEnd == 2 && localeName.length() == 5) localesWithInstalledDictionaries
+						.add(new Locale(localeName.substring(0, 2), localeName.substring(3)));
 				else if (localeName.length() > 6 && localeName.charAt(5) == '_') localesWithInstalledDictionaries.add(
 						new Locale(localeName.substring(0, 2), localeName.substring(3, 5), localeName.substring(6)));
 			}
@@ -121,7 +119,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 			return fgLocalesWithInstalledDictionaries = Collections.emptySet();
 		}
 
-		fgLocalesWithInstalledDictionaries = new HashSet<Locale>();
+		fgLocalesWithInstalledDictionaries = new HashSet<>();
 
 		while (locations.hasMoreElements()) {
 			URL location = locations.nextElement();
@@ -165,8 +163,9 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 	}
 
 	/*
-	 * @see net.certiv.spellchecker.engine.ISpellCheckEngine#findDictionary(java.util.Locale)
-	 * 
+	 * @see
+	 * net.certiv.spellchecker.engine.ISpellCheckEngine#findDictionary(java.util.Locale)
+	 *
 	 * @since 3.3
 	 */
 	public static Locale findClosestLocale(Locale locale) {
@@ -190,12 +189,11 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 	}
 
 	/**
-	 * Returns the enumeration of URLs for the dictionary locations where the Platform dictionaries
-	 * are located.
+	 * Returns the enumeration of URLs for the dictionary locations where the Platform
+	 * dictionaries are located.
 	 * <p>
 	 * This is in {@code org.eclipse.jdt.ui/dictionaries/} which can also be populated via
 	 * fragments.
-	 * 
 	 *
 	 * @throws IOException if there is an I/O error
 	 * @return The dictionary locations, or {@code null} iff the locations are not known
@@ -208,7 +206,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 
 	/**
 	 * Returns the singleton instance of the spell check engine.
-	 * 
+	 *
 	 * @param store
 	 * @return The singleton instance of the spell check engine
 	 */
@@ -235,13 +233,13 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 	}
 
 	/** The registered locale insensitive dictionaries */
-	private Set<ISpellDictionary> fGlobalDictionaries = new HashSet<ISpellDictionary>();
+	private Set<ISpellDictionary> fGlobalDictionaries = new HashSet<>();
 
 	/** The spell checker for fLocale */
 	private ISpellChecker fChecker = null;
 
 	/** The registered locale sensitive dictionaries */
-	private Map<Locale, ISpellDictionary> fLocaleDictionaries = new HashMap<Locale, ISpellDictionary>();
+	private Map<Locale, ISpellDictionary> fLocaleDictionaries = new HashMap<>();
 
 	/** The user dictionary */
 	private ISpellDictionary fUserDictionary = null;
@@ -250,7 +248,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 
 	/**
 	 * Creates a new spell check manager.
-	 * 
+	 *
 	 * @param store
 	 */
 	private SpellCheckEngine(IPreferenceStore store) {
@@ -283,6 +281,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 		store.addPropertyChangeListener(this);
 	}
 
+	@Override
 	public synchronized final ISpellChecker getSpellChecker() throws IllegalStateException {
 		if (fGlobalDictionaries == null) throw new IllegalStateException("spell checker has been shut down"); //$NON-NLS-1$
 
@@ -297,8 +296,7 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 		fChecker = new DefaultSpellChecker(store, locale);
 		resetUserDictionary();
 
-		for (Iterator<ISpellDictionary> iterator = fGlobalDictionaries.iterator(); iterator.hasNext();) {
-			ISpellDictionary dictionary = iterator.next();
+		for (ISpellDictionary dictionary : fGlobalDictionaries) {
 			fChecker.addDictionary(dictionary);
 		}
 
@@ -332,12 +330,14 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 		return new Locale(""); //$NON-NLS-1$
 	}
 
+	@Override
 	public synchronized final Locale getLocale() {
 		if (fChecker == null) return null;
 
 		return fChecker.getLocale();
 	}
 
+	@Override
 	public final void propertyChange(final PropertyChangeEvent event) {
 		if (event.getProperty().equals(PreferenceConstants.SPELLING_LOCALE)) {
 			resetSpellChecker();
@@ -356,10 +356,8 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 
 		if (event.getProperty().equals(SpellingService.PREFERENCE_SPELLING_ENABLED)
 				&& !EditorsUI.getPreferenceStore().getBoolean(SpellingService.PREFERENCE_SPELLING_ENABLED)) {
-			if (this == fgEngine)
-				SpellCheckEngine.shutdownInstance();
-			else
-				shutdown();
+			if (this == fgEngine) SpellCheckEngine.shutdownInstance();
+			else shutdown();
 		}
 	}
 
@@ -411,16 +409,19 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 		}
 	}
 
+	@Override
 	public synchronized final void registerGlobalDictionary(final ISpellDictionary dictionary) {
 		fGlobalDictionaries.add(dictionary);
 		resetSpellChecker();
 	}
 
+	@Override
 	public synchronized final void registerDictionary(final Locale locale, final ISpellDictionary dictionary) {
 		fLocaleDictionaries.put(locale, dictionary);
 		resetSpellChecker();
 	}
 
+	@Override
 	public synchronized final void shutdown() {
 
 		store.removePropertyChangeListener(this);
@@ -452,9 +453,10 @@ public class SpellCheckEngine implements ISpellCheckEngine, IPropertyChangeListe
 
 	/*
 	 * @see
-	 * org.eclipse.jdt.ui.text.spelling.engine.ISpellCheckEngine#unregisterDictionary(org.eclipse.
-	 * jdt.ui.text.spelling.engine.ISpellDictionary)
+	 * org.eclipse.jdt.ui.text.spelling.engine.ISpellCheckEngine#unregisterDictionary(org.
+	 * eclipse. jdt.ui.text.spelling.engine.ISpellDictionary)
 	 */
+	@Override
 	public synchronized final void unregisterDictionary(final ISpellDictionary dictionary) {
 		fGlobalDictionaries.remove(dictionary);
 		fLocaleDictionaries.values().remove(dictionary);

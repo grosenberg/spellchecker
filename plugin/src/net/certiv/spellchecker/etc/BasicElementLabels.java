@@ -18,33 +18,32 @@ import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.ui.IWorkingSet;
 
 /**
- * A label provider for basic elements like paths. The label provider will make sure that the labels are correctly
- * shown in RTL environments.
+ * A label provider for basic elements like paths. The label provider will make sure that
+ * the labels are correctly shown in RTL environments.
  *
  * @since 3.4
  */
 public class BasicElementLabels {
 
-
 	// TextProcessor delimiters
-	private static final String CODE_DELIMITERS= TextProcessor.getDefaultDelimiters() + "<>()?,{}+-*!%=^|&;[]~"; //$NON-NLS-1$
-	private static final String FILE_PATTERN_DELIMITERS= TextProcessor.getDefaultDelimiters() + "*.?"; //$NON-NLS-1$
-	private static final String URL_DELIMITERS= TextProcessor.getDefaultDelimiters() + ":@?-"; //$NON-NLS-1$
-
+	private static final String CODE_DELIMITERS = TextProcessor.getDefaultDelimiters() + "<>()?,{}+-*!%=^|&;[]~"; //$NON-NLS-1$
+	private static final String FILE_PATTERN_DELIMITERS = TextProcessor.getDefaultDelimiters() + "*.?"; //$NON-NLS-1$
+	private static final String URL_DELIMITERS = TextProcessor.getDefaultDelimiters() + ":@?-"; //$NON-NLS-1$
 
 	/**
 	 * Returns the label of a path.
 	 *
 	 * @param path the path
-	 * @param isOSPath if {@code true}, the path represents an OS path, if {@code false} it is a workspace path.
+	 * @param isOSPath if {@code true}, the path represents an OS path, if {@code false}
+	 *            it is a workspace path.
 	 * @return the label of the path to be used in the UI.
 	 */
 	public static String getPathLabel(IPath path, boolean isOSPath) {
 		String label;
 		if (isOSPath) {
-			label= path.toOSString();
+			label = path.toOSString();
 		} else {
-			label= path.makeRelative().toString();
+			label = path.makeRelative().toString();
 		}
 		return Strings.markLTR(label);
 	}
@@ -70,7 +69,8 @@ public class BasicElementLabels {
 	}
 
 	/**
-	 * Returns the label for a URL, URI or URL part. Example is 'http://www.x.xom/s.html#1'
+	 * Returns the label for a URL, URI or URL part. Example is
+	 * 'http://www.x.xom/s.html#1'
 	 *
 	 * @param name the URL string
 	 * @return the label of the URL.
@@ -99,21 +99,21 @@ public class BasicElementLabels {
 		return Strings.markLTR(resourceName);
 	}
 
-//	/**
-//	 * Returns a label for a type root name which is a file name.
-//	 *
-//	 * @param typeRoot the typeRoot
-//	 * @return the label of the resource name.
-//	 */
-//	public static String getFileName(ITypeRoot typeRoot) {
-//		return Strings.markLTR(typeRoot.getElementName());
-//	}
+	// /**
+	// * Returns a label for a type root name which is a file name.
+	// *
+	// * @param typeRoot the typeRoot
+	// * @return the label of the resource name.
+	// */
+	// public static String getFileName(ITypeRoot typeRoot) {
+	// return Strings.markLTR(typeRoot.getElementName());
+	// }
 
 	/**
-	 * Returns a label for Java element name. Example is 'new Test<? extends List>() { ...}'.
-	 * This method should only be used for simple element names. Use
-	 * {@link JavaElementLabels} to create a label from a Java element or {@link BindingLabelProvider}
-	 * for labels of bindings.
+	 * Returns a label for Java element name. Example is 'new Test<? extends List>() {
+	 * ...}'. This method should only be used for simple element names. Use
+	 * {@link JavaElementLabels} to create a label from a Java element or
+	 * {@link BindingLabelProvider} for labels of bindings.
 	 *
 	 * @param name the Java element name.
 	 * @return the label for the Java element
@@ -123,7 +123,8 @@ public class BasicElementLabels {
 	}
 
 	/**
-	 * Returns a label for Java code snippet used in a label. Example is 'Test test= new Test<? extends List>() { ...}'.
+	 * Returns a label for Java code snippet used in a label. Example is 'Test test= new
+	 * Test<? extends List>() { ...}'.
 	 *
 	 * @param string the Java code snippet
 	 * @return the label for the Java code snippet
@@ -151,6 +152,5 @@ public class BasicElementLabels {
 	public static String getWorkingSetLabel(IWorkingSet set) {
 		return Strings.markLTR(set.getLabel());
 	}
-
 
 }

@@ -36,30 +36,33 @@ public class HtmlTagDictionary extends AbstractSpellDictionary {
 	@Override
 	public boolean isCorrect(final String word) {
 
-		if (word.charAt(0) == IHtmlTagConstants.HTML_TAG_PREFIX)
-			return super.isCorrect(word);
+		if (word.charAt(0) == IHtmlTagConstants.HTML_TAG_PREFIX) return super.isCorrect(word);
 
 		return false;
 	}
 
 	/*
-	 * @see org.eclipse.jdt.ui.text.spelling.engine.AbstractSpellDictionary#load(java.net.URL)
+	 * @see
+	 * org.eclipse.jdt.ui.text.spelling.engine.AbstractSpellDictionary#load(java.net.URL)
 	 */
 	@Override
 	protected synchronized boolean load(final URL url) {
 
 		unload();
 
-		for (int index= 0; index < IHtmlTagConstants.HTML_GENERAL_TAGS.length; index++) {
+		for (String element : IHtmlTagConstants.HTML_GENERAL_TAGS) {
 
-			hashWord(IHtmlTagConstants.HTML_TAG_PREFIX + IHtmlTagConstants.HTML_GENERAL_TAGS[index] + IHtmlTagConstants.HTML_TAG_POSTFIX);
-			hashWord(IHtmlTagConstants.HTML_CLOSE_PREFIX + IHtmlTagConstants.HTML_GENERAL_TAGS[index] + IHtmlTagConstants.HTML_TAG_POSTFIX);
+			hashWord(IHtmlTagConstants.HTML_TAG_PREFIX + element + IHtmlTagConstants.HTML_TAG_POSTFIX);
+			hashWord(IHtmlTagConstants.HTML_CLOSE_PREFIX + element + IHtmlTagConstants.HTML_TAG_POSTFIX);
 		}
 		return true;
 	}
 
 	/*
-	 * @see net.certiv.spellchecker.engine.AbstractSpellDictionary#stripNonLetters(java.lang.String)
+	 * @see
+	 * net.certiv.spellchecker.engine.AbstractSpellDictionary#stripNonLetters(java.lang.
+	 * String)
+	 *
 	 * @since 3.3
 	 */
 	@Override

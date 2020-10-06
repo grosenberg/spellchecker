@@ -83,8 +83,10 @@ public class JavaSpellingProblem extends SpellingProblem {
 		String[] arguments = getArguments();
 		if (arguments == null) return new ICompletionProposal[0];
 
-		if (arguments[0].indexOf('&') != -1 && isIgnoringAmpersand()) return new ICompletionProposal[0]; // no proposals
-																										 // for now
+		if (arguments[0].indexOf('&') != -1 && isIgnoringAmpersand()) return new ICompletionProposal[0]; // no
+																										 // proposals
+																										 // for
+																										 // now
 
 		final int threshold = Activator.getDefault().getPreferenceStore()
 				.getInt(PreferenceConstants.SPELLING_PROPOSAL_THRESHOLD);

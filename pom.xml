@@ -8,19 +8,23 @@
 
 	<groupId>net.certiv</groupId>
 	<artifactId>net.certiv.spellchecker.parent</artifactId>
-	<version>3.3.3-SNAPSHOT</version>
+	<version>3.4.0-SNAPSHOT</version>
 
 	<name>net.certiv.spellchecker :: parent</name>
 	<description>net.certiv.spellchecker parent</description>
 
+	<modules>
+		<module>plugin</module>
+		<module>feature</module>
+		<module>site</module>
+	</modules>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<tycho.version>1.3.0</tycho.version>
-		<eclipse-repo.url>http://download.eclipse.org/releases/2020-03</eclipse-repo.url>
-		<!-- <certiv-repo.url>file:/D:/DevFiles/Eclipse/Tools/Certiv/net.certiv/net.certiv.tools.site/target/repository</certiv-repo.url> 
-			<dsl-repo.url>file:/D:/DevFiles/Eclipse/Tools/Dsl/net.certiv.dsl/net.certiv.dsl.site/target/repository</dsl-repo.url> -->
+		<java.version>11</java.version>
+		<tycho.version>2.0.0</tycho.version>
+		<eclipse-repo.url>http://download.eclipse.org/releases/2020-09</eclipse-repo.url>
 	</properties>
 
 	<repositories>
@@ -29,11 +33,6 @@
 			<layout>p2</layout>
 			<url>${eclipse-repo.url}</url>
 		</repository>
-
-		<!-- <repository> <id>certiv</id> <layout>p2</layout> <url>${certiv-repo.url}</url> 
-			</repository> <repository> <id>dsl</id> <layout>p2</layout> <url>${dsl-repo.url}</url> 
-			</repository> -->
-
 	</repositories>
 
 	<build>
@@ -57,7 +56,6 @@
 				<version>${tycho.version}</version>
 				<configuration>
 					<includePackedArtifacts>true</includePackedArtifacts>
-					<eclipse.p2.mirrors>false</eclipse.p2.mirrors>
 					<dependency-resolution>
 						<optionalDependencies>require</optionalDependencies>
 					</dependency-resolution>
@@ -121,9 +119,4 @@
 		</profile>
 	</profiles>
 
-	<modules>
-		<module>plugin</module>
-		<module>feature</module>
-		<module>site</module>
-	</modules>
 </project>

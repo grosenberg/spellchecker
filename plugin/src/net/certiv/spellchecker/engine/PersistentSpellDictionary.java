@@ -19,7 +19,6 @@ import java.nio.charset.Charset;
 
 import net.certiv.spellchecker.Activator;
 
-
 /**
  * Persistent modifiable word-list based dictionary.
  *
@@ -36,7 +35,7 @@ public class PersistentSpellDictionary extends AbstractSpellDictionary {
 	 * @param url the URL of the word list for this dictionary
 	 */
 	public PersistentSpellDictionary(final URL url) {
-		fLocation= url;
+		fLocation = url;
 	}
 
 	/*
@@ -52,28 +51,27 @@ public class PersistentSpellDictionary extends AbstractSpellDictionary {
 	 */
 	@Override
 	public void addWord(final String word) {
-		if (isCorrect(word))
-			return;
+		if (isCorrect(word)) return;
 
-		FileOutputStream fileStream= null;
+		FileOutputStream fileStream = null;
 		try {
-			Charset charset= Charset.forName(getEncoding());
-			ByteBuffer byteBuffer= charset.encode(word + "\n"); //$NON-NLS-1$
-			int size= byteBuffer.limit();
+			Charset charset = Charset.forName(getEncoding());
+			ByteBuffer byteBuffer = charset.encode(word + "\n"); //$NON-NLS-1$
+			int size = byteBuffer.limit();
 			final byte[] byteArray;
-			if (byteBuffer.hasArray())
-				byteArray= byteBuffer.array();
+			if (byteBuffer.hasArray()) byteArray = byteBuffer.array();
 			else {
-				byteArray= new byte[size];
+				byteArray = new byte[size];
 				byteBuffer.get(byteArray);
 			}
 
-			fileStream= new FileOutputStream(fLocation.getPath(), true);
+			fileStream = new FileOutputStream(fLocation.getPath(), true);
 
-			// Encoding UTF-16 charset writes a BOM. In which case we need to cut it away if the file isn't empty
-			int bomCutSize= 0;
+			// Encoding UTF-16 charset writes a BOM. In which case we need to cut it away
+			// if the file isn't empty
+			int bomCutSize = 0;
 			if (!isEmpty() && "UTF-16".equals(charset.name())) //$NON-NLS-1$
-				bomCutSize= 2;
+				bomCutSize = 2;
 
 			fileStream.write(byteArray, bomCutSize, size - bomCutSize);
 		} catch (IOException exception) {
@@ -81,10 +79,8 @@ public class PersistentSpellDictionary extends AbstractSpellDictionary {
 			return;
 		} finally {
 			try {
-				if (fileStream != null)
-					fileStream.close();
-			} catch (IOException e) {
-			}
+				if (fileStream != null) fileStream.close();
+			} catch (IOException e) {}
 		}
 
 		hashWord(word);

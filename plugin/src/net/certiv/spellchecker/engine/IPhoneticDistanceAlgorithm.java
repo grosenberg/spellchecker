@@ -21,11 +21,9 @@ public interface IPhoneticDistanceAlgorithm {
 	/**
 	 * Returns the non-negative phonetic distance between two words
 	 *
-	 * @param from
-	 *                  The first word
-	 * @param to
-	 *                  The second word
+	 * @param from The first word
+	 * @param to The second word
 	 * @return The non-negative phonetic distance between the words.
 	 */
-	public int getDistance(String from, String to);
+	int getDistance(String from, String to);
 }

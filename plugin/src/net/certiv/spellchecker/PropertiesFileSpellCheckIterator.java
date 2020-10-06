@@ -12,15 +12,13 @@ package net.certiv.spellchecker;
 
 import java.util.Locale;
 
-import com.ibm.icu.text.BreakIterator;
-
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 
+import com.ibm.icu.text.BreakIterator;
 
 /**
- * Iterator to spell check Java properties files
- * where '&' is ignored.
+ * Iterator to spell check Java properties files where '&' is ignored.
  *
  * @since 3.3
  */
@@ -35,37 +33,33 @@ public class PropertiesFileSpellCheckIterator extends SpellCheckIterator {
 	 */
 	@Override
 	public final String next() {
-		int previous= -1;
-		String token= nextToken();
+		int previous = -1;
+		String token = nextToken();
 		while (fSuccessor != BreakIterator.DONE && (token == null || fContent.charAt(fNext) == '&')) {
 			if (token != null) {
-				if (previous == -1)
-					previous= fPrevious;
-				String nextToken= nextToken();
-				if (nextToken != null)
-					token= token + nextToken.substring(1);
-				else
-					token= token + '&';
-			} else
-				token= nextToken();
+				if (previous == -1) previous = fPrevious;
+				String nextToken = nextToken();
+				if (nextToken != null) token = token + nextToken.substring(1);
+				else token = token + '&';
+			} else token = nextToken();
 
 		}
 
-		if (previous != -1)
-			fPrevious= previous;
+		if (previous != -1) fPrevious = previous;
 
 		if (token != null && token.length() > 1 && token.startsWith("&")) { //$NON-NLS-1$
-			token= token.substring(1);
+			token = token.substring(1);
 
 			// Add characters in front of '&'
-			while (fPrevious > 0 && !Character.isWhitespace(fContent.charAt(fPrevious - 1)) && fContent.charAt(fPrevious - 1) != '=') {
-				token= fContent.charAt(fPrevious - 1) + token;
+			while (fPrevious > 0 && !Character.isWhitespace(fContent.charAt(fPrevious - 1))
+					&& fContent.charAt(fPrevious - 1) != '=') {
+				token = fContent.charAt(fPrevious - 1) + token;
 				fPrevious--;
 			}
 
 		}
 
-		fLastToken= token;
+		fLastToken = token;
 
 		return token;
 	}
