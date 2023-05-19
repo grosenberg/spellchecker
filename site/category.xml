@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/net.certiv.spellchecker.feature_3.4.0.qualifier.jar" id="net.certiv.spellchecker.feature" version="3.4.0.qualifier">
+   <feature url="features/net.certiv.spellchecker.feature_4.2.3.qualifier.jar" id="net.certiv.spellchecker.feature" version="4.2.3.qualifier">
       <category name="net.certiv.support"/>
    </feature>
    <category-def name="net.certiv.support" label="Certiv Tools Support"/>

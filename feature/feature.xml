@@ -2,7 +2,7 @@
 <feature
       id="net.certiv.spellchecker.feature"
       label="Spellchecker"
-      version="3.4.0.qualifier"
+      version="4.2.3.qualifier"
       provider-name="Certiv Analytics">
 
    <description url="http://www.certiv.net/">
@@ -234,19 +234,19 @@ litigation.
    </url>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.ui.workbench.texteditor"/>
-      <import plugin="com.ibm.icu"/>
-      <import plugin="org.eclipse.swt"/>
-      <import plugin="org.eclipse.ui.editors"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.ui.workbench"/>
-      <import plugin="org.eclipse.core.variables"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.core.resources" version="3.18.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.26.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.variables" version="3.5.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui" version="3.17.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.28.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.text" version="3.22.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.swt" version="3.122.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="3.14.400" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.forms" version="3.11.500" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.20.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench" version="3.127.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor" version="3.16.600" match="greaterOrEqual"/>
+      <import plugin="com.ibm.icu" version="72.1.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

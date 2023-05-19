@@ -3,8 +3,7 @@
 # Package Files 
 *.jar
 *.zip
-bin
+bin/
 target/
 
-.classpath
 .settings/
